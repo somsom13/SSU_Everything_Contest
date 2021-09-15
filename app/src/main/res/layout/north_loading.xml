@@ -11,14 +11,8 @@
         android:layout_height="wrap_content"
         android:text="북쪽 가는중~"
         tools:layout_editor_absoluteX="88dp"
-        tools:layout_editor_absoluteY="181dp" />
+        tools:layout_editor_absoluteY="181dp"
+        tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/goNorthMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="go North Main"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="168dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

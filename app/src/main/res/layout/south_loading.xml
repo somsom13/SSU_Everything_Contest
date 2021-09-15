@@ -4,13 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/goSouthMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="go South Main"
-        tools:layout_editor_absoluteX="136dp"
-        tools:layout_editor_absoluteY="350dp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -18,5 +11,6 @@
         android:layout_height="wrap_content"
         android:text="남쪽 가는중~"
         tools:layout_editor_absoluteX="136dp"
-        tools:layout_editor_absoluteY="203dp" />
+        tools:layout_editor_absoluteY="203dp"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
