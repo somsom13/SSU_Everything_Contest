@@ -13,17 +13,17 @@ import java.util.ArrayList;
 
 public class SouthMain extends AppCompatActivity {
 
-    ArrayList<NorthWordSouthWordData> nsWordList;
+    //ArrayList<NorthWordSouthWordData> nsWordList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.south_main);
 
-        this.InitializeWord();
+        //this.InitializeWord();
 
         ListView listView=(ListView)findViewById(R.id.southListView);
-        final NorthSouthWordAdapter nsAdapter=new NorthSouthWordAdapter(this,nsWordList);
+        final NorthSouthWordAdapter nsAdapter=new NorthSouthWordAdapter(this,MainActivity.nsWordList);
 
         listView.setAdapter(nsAdapter);
 
@@ -36,11 +36,12 @@ public class SouthMain extends AppCompatActivity {
         });
 
     }
-    public void InitializeWord() {
+
+    /*public void InitializeWord() {
         nsWordList=new ArrayList<NorthWordSouthWordData>();
         nsWordList.add(new NorthWordSouthWordData("얼음보숭이","아이스크림",true));
         nsWordList.add(new NorthWordSouthWordData("닭알두부","계란찜",false));
-    }
+    }*/
 
 
 }

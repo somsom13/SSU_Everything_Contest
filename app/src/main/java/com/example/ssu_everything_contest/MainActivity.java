@@ -3,13 +3,18 @@ package com.example.ssu_everything_contest;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,10 +27,11 @@ public class MainActivity extends AppCompatActivity {
      */
     public static SQLiteDatabase mDb;
     public static List<WordGameList> wordGameListList=new ArrayList<>(); //게임용 리스트
-    public static List<WordDictionary> wordDictionaryList=new ArrayList<>();//단어사전 리스트
-    public static int favoriteGage=100;
+    public static ArrayList<NorthWordSouthWordData> nsWordList=new ArrayList<>();//단어사전 리스트
+    //public static int favoriteGage=100;
     public final static int lowFavorite=50;//실패하는 점수 (기준점수)
     //lowFavorite까지 가지 않고 무사히 게임을 다 통과한다면 결혼!
+    //public static int progressGage=
 
 
     @Override
@@ -53,7 +59,19 @@ public class MainActivity extends AppCompatActivity {
          */
         insertDataToGame();
         insertDataToDictionary();
-        Log.v("checkDictionary", String.valueOf(wordDictionaryList.size()));
+        //Log.v("checkDictionary", String.valueOf(wordDictionaryList.size()));
+
+        TextView favoriteText=(TextView) findViewById(R.id.fav);
+        SharedPreferences test = getSharedPreferences("test", MODE_PRIVATE);
+        SharedPreferences.Editor editor = test.edit();
+
+        if(!test.contains("favoriteGage"))
+            editor.putInt("favoriteGage", 100);
+        if(!test.contains("progressCount"))
+            editor.putInt("progressCount",0);
+        editor.commit(); //완료한다.
+
+        favoriteText.setText(String.valueOf(test.getInt("favoriteGage",100)));
 
 
         //북쪽 로딩으로 가는 버튼
@@ -82,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void insertDataToGame(){
-        String sql="SELECT * FROM NSdictionary WHERE question not null";
+        String sql="SELECT * FROM WordDictionaryData WHERE question not null";
         Cursor cur = mDb.rawQuery(sql, null);
 
         if (cur != null) {
@@ -107,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void insertDataToDictionary(){
-        String sql="SELECT * FROM NSdictionary";
+        String sql="SELECT * FROM WordDictionaryData";
         Cursor cur = mDb.rawQuery(sql, null);
 
         if (cur != null) {
@@ -115,8 +133,9 @@ public class MainActivity extends AppCompatActivity {
                 int id = cur.getInt(0);
                 String sword = cur.getString(1);
                 String nword = cur.getString(2);
+                String check=cur.getString(8);
                 //Log.v("checkWordGame","add new value, id: "+id);
-                wordDictionaryList.add(new WordDictionary(id,sword,nword));
+                nsWordList.add(new NorthWordSouthWordData(id,sword,nword,check.equals("X")?false:true));
             }
         }
     }

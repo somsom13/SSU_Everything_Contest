@@ -1,7 +1,9 @@
 package com.example.ssu_everything_contest;
 
 import android.content.Context;
+import android.database.SQLException;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +58,27 @@ public class NorthSouthWordAdapter extends BaseAdapter {
 
     public void changeStatus(int position) {
         NorthWordSouthWordData temp=words.get(position);
-        temp.setCheck(true);
+        int id=temp.getID();
+        Log.v("SQLcheck","sword: "+id);
+        if(temp.getCheck()==false) {
+            temp.setCheck(true);
+            String sql="UPDATE WordDictionaryData SET _CHECK='O' WHERE _ID="+id;
+            try{
+                MainActivity.mDb.execSQL(sql);
+            }catch (SQLException e){
+                Log.v("SQLcheck","update error");
+            }
+        }
+        else {
+            temp.setCheck(false);
+            String sql="UPDATE WordDictionaryData SET _CHECK='X' WHERE _ID="+id;
+            try{
+                MainActivity.mDb.execSQL(sql);
+            }catch (SQLException e){
+                e.printStackTrace();
+                Log.v("SQLcheck","update error");
+            }
+        }
         words.set(position,temp);
     }
 }
