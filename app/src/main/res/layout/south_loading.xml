@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp">
 
+    <ImageView
+        android:id="@+id/iv_logo2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:id="@+id/app_name"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:text="남쪽 가는중~"
-        tools:layout_editor_absoluteX="136dp"
-        tools:layout_editor_absoluteY="203dp"
-        tools:ignore="MissingConstraints" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:gravity="center"
+        android:text="서울숭실로 이동중..."
+        android:textColor="@color/black"
+        android:textSize="50px"
+        android:layout_marginTop="30dp"/>
+</LinearLayout>
