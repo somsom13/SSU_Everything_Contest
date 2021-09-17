@@ -1,6 +1,9 @@
 package com.example.ssu_everything_contest;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.OnLifecycleEvent;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -28,10 +32,11 @@ public class MainActivity extends AppCompatActivity {
     public static SQLiteDatabase mDb;
     public static List<WordGameList> wordGameListList=new ArrayList<>(); //게임용 리스트
     public static ArrayList<NorthWordSouthWordData> nsWordList=new ArrayList<>();//단어사전 리스트
-    //public static int favoriteGage=100;
     public final static int lowFavorite=50;//실패하는 점수 (기준점수)
-    //lowFavorite까지 가지 않고 무사히 게임을 다 통과한다면 결혼!
-    //public static int progressGage=
+    private int favoriteGage;
+    SharedPreferences test;
+    private TextView favoriteText;
+    private long backKeyPressedTime=0;
 
 
     @Override
@@ -61,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
         insertDataToDictionary();
         //Log.v("checkDictionary", String.valueOf(wordDictionaryList.size()));
 
-        TextView favoriteText=(TextView) findViewById(R.id.fav);
-        SharedPreferences test = getSharedPreferences("test", MODE_PRIVATE);
+        favoriteText=(TextView) findViewById(R.id.fav);
+        test = getSharedPreferences("test", MODE_PRIVATE);
         SharedPreferences.Editor editor = test.edit();
 
         if(!test.contains("favoriteGage"))
@@ -71,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             editor.putInt("progressCount",0);
         editor.commit(); //완료한다.
 
+        //favoriteGage=test.getInt("favoriteGage",100);
         favoriteText.setText(String.valueOf(test.getInt("favoriteGage",100)));
 
 
@@ -80,8 +86,14 @@ public class MainActivity extends AppCompatActivity {
         goNorth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(getApplicationContext(),NorthLoading.class);
-                startActivity(intent);
+                //favoriteGage 따라 전환 설정
+                if(test.getInt("favoriteGage",0)>=100){
+                    Intent intent =new Intent(getApplicationContext(),NorthLoading.class);
+                    startActivity(intent);
+                }else{
+                    makeDialog();
+                }
+
             }
         });
 
@@ -97,6 +109,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    public void initializeFavoriteGage() {
+        Log.v("checkFavorite","enter favorite resume");
+        favoriteGage=test.getInt("favoriteGage",100);
+        favoriteText.setText(String.valueOf(favoriteGage));
+    }
+
 
 
     private void insertDataToGame(){
@@ -140,6 +160,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    private void makeDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("").setMessage("호감도가 낮아서 평양숭실에 방문할 수 없습니다. \n호감도를 100이상으로 높여주세요!");
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 
 
 }

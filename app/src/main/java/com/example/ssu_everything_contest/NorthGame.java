@@ -13,8 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import org.w3c.dom.Text;
 
@@ -57,27 +60,28 @@ public class NorthGame extends Fragment{
                     case R.id.choose1:
                         res=checkAnswer(1);
                         progressCount++;
-                        doProgress();
+                        favorite.setText(String.valueOf(favoriteGage));
+                        waitAndProgress();
                         break;
                     case R.id.choose2:
                         res=checkAnswer(2);
                         progressCount++;
-                        doProgress();
+                        favorite.setText(String.valueOf(favoriteGage));
+                        waitAndProgress();
                         break;
                     case R.id.choose3:
                         res=checkAnswer(3);
                         progressCount++;
-                        doProgress();
+                        favorite.setText(String.valueOf(favoriteGage));
+                        waitAndProgress();
                         break;
                     case R.id.choose4:
                         res=checkAnswer(4);
                         progressCount++;
-                        doProgress();
+                        favorite.setText(String.valueOf(favoriteGage));
+                        waitAndProgress();
                         break;
                     case R.id.homeIconButton:
-                        /*editor.putInt("favoriteGage",favoriteGage);
-                        editor.putInt("progressCount",progressCount);
-                        editor.apply();*/
                         Intent intent =new Intent(getActivity(),MainActivity.class);
                         startActivity(intent);
                         break;
@@ -101,29 +105,50 @@ public class NorthGame extends Fragment{
 
 
    private void doProgress(){
-        if(progressCount==49){
-            Log.v("checkGame","end of game list");
-            return;
+        if(progressCount==50){
+            Log.v("checkGame","end of game list, go to NorthSuccess");
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            NorthSuccess fragment2 = new NorthSuccess();
+            transaction.replace(R.id.container, fragment2);
+            transaction.commit();
         }
         progressGage.setText((progressCount+1)+"/50");
         WordGameList wg=MainActivity.wordGameListList.get(progressCount);
         realAnswer=wg.realAnswer;
         setTextView(wg.question,wg.a1,wg.a2,wg.a3,wg.a4,favoriteGage);
 
-       editor.putInt("favoriteGage",favoriteGage);
-       editor.putInt("progressCount",progressCount);
-       editor.apply();
+        applyPreference();
    }
 
 
     private int checkAnswer(int chosen){
         if(chosen==realAnswer) {
-            Log.v("checkGame", "correct answer!, favoriteGage: "+(favoriteGage+=10));
+            Log.v("checkGame", "correct answer!, favoriteGage: "+(favoriteGage+=2));
             //dialog 표시, 호감도 up
+            //sendDialog("correct");
+            Toast.makeText(getActivity(),"+2p",Toast.LENGTH_SHORT).show();
+
+            question.setText("말이 통하는 친구네~");
             return 1;
         }else{
-            Log.v("checkGame","wrong answer! favoriteGage: "+(favoriteGage-=10));
-            //dialog표시, 호감도 up
+            Log.v("checkGame","wrong answer! favoriteGage: "+(favoriteGage-=3));
+            //dialog표시, 호감도 up, 진짜 정답 표시 (background 컬러 변경)
+            //sendDialog("wrong");
+            Toast.makeText(getActivity(),"-3p",Toast.LENGTH_SHORT).show();
+            question.setText("동문서답이네...내 얘기 안듣고 있나?");
+            WordGameList getAnswer=MainActivity.wordGameListList.get(progressCount);
+            String sword=getAnswer.sword;
+            String nword=getAnswer.nword;
+
+            if(favoriteGage<=70){
+                applyPreference();
+
+                Log.v("checkGame","favorite Gage: "+favoriteGage+", go to North Fail");
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                NorthFail fragment3 = new NorthFail();
+                transaction.replace(R.id.container, fragment3);
+                transaction.commit();
+            }
             return 0;
         }
 
@@ -145,6 +170,30 @@ public class NorthGame extends Fragment{
         startActivity(intent);
     }
 
+    private void applyPreference(){
+        editor.putInt("favoriteGage",favoriteGage);
+        editor.putInt("progressCount",progressCount);
+        editor.apply();
+    }
+
+    private void sendDialog(String result){
+        Log.v("checkGame","enter send dialog");
+        Bundle args=new Bundle();
+        args.putString("answerResult",result);
+        DialogFragment dialogFragment=new MyDialogFragment();
+        dialogFragment.setArguments(args);
+        dialogFragment.show(getActivity().getSupportFragmentManager(),"test");
+    }
+
+    private void waitAndProgress(){
+        Handler handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doProgress();
+            }
+        }    ,2000);
+    }
 
 
 
