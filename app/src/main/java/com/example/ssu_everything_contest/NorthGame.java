@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,10 +29,18 @@ public class NorthGame extends Fragment{
     private TextView a1,a2,a3,a4;
     int progressCount;
     int favoriteGage;
+    int res;
+
     private int realAnswer;
     SharedPreferences test;
     SharedPreferences.Editor editor;
 
+    ImageView nCharacterNormal;
+    ImageView sCharacterNormal;
+    ImageView nCharacterAngry;
+    ImageView sCharacterSad;
+    ImageView nCharacterSmile;
+    ImageView sCharacterSmile;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,9 +60,20 @@ public class NorthGame extends Fragment{
         favoriteGage=test.getInt("favoriteGage",100);
         progressCount=test.getInt("progressCount",0);
 
+        nCharacterNormal=rootView.findViewById(R.id.character1normal);
+        sCharacterNormal=rootView.findViewById(R.id.character2normal);
+        nCharacterAngry=rootView.findViewById(R.id.character1angry);
+        sCharacterSad= rootView.findViewById(R.id.character2sad);
+        nCharacterSmile=rootView.findViewById(R.id.character1smile);
+        sCharacterSmile=rootView.findViewById(R.id.character2smile);
+
+        nCharacterAngry.setVisibility(View.INVISIBLE);
+        sCharacterSad.setVisibility(View.INVISIBLE);
+        nCharacterSmile.setVisibility(View.INVISIBLE);
+        sCharacterSmile.setVisibility(View.INVISIBLE);
 
         View.OnClickListener answerClick=new View.OnClickListener(){
-            int res;
+            //int res;
             @Override
             public void onClick(View view) {
                 switch (view.getId()){
@@ -112,6 +132,12 @@ public class NorthGame extends Fragment{
             transaction.replace(R.id.container, fragment2);
             transaction.commit();
         }
+       nCharacterNormal.setVisibility(View.VISIBLE);
+       sCharacterNormal.setVisibility(View.VISIBLE);
+       nCharacterSmile.setVisibility(View.INVISIBLE);
+       sCharacterSmile.setVisibility(View.INVISIBLE);
+       nCharacterAngry.setVisibility(View.INVISIBLE);
+       sCharacterSad.setVisibility(View.INVISIBLE);
         progressGage.setText((progressCount+1)+"/50");
         WordGameList wg=MainActivity.wordGameListList.get(progressCount);
         realAnswer=wg.realAnswer;
@@ -127,7 +153,6 @@ public class NorthGame extends Fragment{
             //dialog 표시, 호감도 up
             //sendDialog("correct");
             Toast.makeText(getActivity(),"+2p",Toast.LENGTH_SHORT).show();
-
             question.setText("말이 통하는 친구네~");
             return 1;
         }else{
@@ -135,6 +160,7 @@ public class NorthGame extends Fragment{
             //dialog표시, 호감도 up, 진짜 정답 표시 (background 컬러 변경)
             //sendDialog("wrong");
             Toast.makeText(getActivity(),"-3p",Toast.LENGTH_SHORT).show();
+
             question.setText("동문서답이네...내 얘기 안듣고 있나?");
             WordGameList getAnswer=MainActivity.wordGameListList.get(progressCount);
             String sword=getAnswer.sword;
@@ -186,13 +212,27 @@ public class NorthGame extends Fragment{
     }
 
     private void waitAndProgress(){
+
         Handler handler=new Handler();
+        if (res == 1) {
+            nCharacterNormal.setVisibility(View.INVISIBLE);
+            sCharacterNormal.setVisibility(View.INVISIBLE);
+            nCharacterSmile.setVisibility(View.VISIBLE);
+            sCharacterSmile.setVisibility(View.VISIBLE);
+        } else {
+            nCharacterNormal.setVisibility(View.INVISIBLE);
+            sCharacterNormal.setVisibility(View.INVISIBLE);
+            nCharacterAngry.setVisibility(View.VISIBLE);
+            sCharacterSad.setVisibility(View.VISIBLE);
+        }
         handler.postDelayed(new Runnable() {
+
             @Override
             public void run() {
                 doProgress();
             }
         }    ,2000);
+
     }
 
 
