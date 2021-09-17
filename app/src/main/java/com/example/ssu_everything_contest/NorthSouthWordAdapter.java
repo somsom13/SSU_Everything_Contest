@@ -48,7 +48,7 @@ public class NorthSouthWordAdapter extends BaseAdapter {
         northText.setText(words.get(position).getnWord());
         southText.setText(words.get(position).getsWord());
         if (words.get(position).getCheck() == true) { //이미 누른거
-            southText.setTextColor(Color.parseColor("#ff0000"));
+            southText.setTextColor(Color.parseColor("#5A8CCA"));
         } else { //아직 안누른거
             southText.setTextColor(Color.parseColor("#ffffff"));
         }

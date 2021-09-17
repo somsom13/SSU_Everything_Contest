@@ -2,6 +2,6 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:drawable="@drawable/location_marker_image"
-        android:width="60dp"
-        android:height="60dp" />
+        android:width="65dp"
+        android:height="50dp" />
 </layer-list>

@@ -25,13 +25,16 @@ public class SouthMain extends AppCompatActivity {
         ListView listView=(ListView)findViewById(R.id.southListView);
         final NorthSouthWordAdapter nsAdapter=new NorthSouthWordAdapter(this,MainActivity.nsWordList);
 
+
         listView.setAdapter(nsAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
+                int pos=listView.getFirstVisiblePosition();
                 nsAdapter.changeStatus(position);
                 parent.setAdapter((nsAdapter));
+                listView.setSelection(pos);
             }
         });
 
