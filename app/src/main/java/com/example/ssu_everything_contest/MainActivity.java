@@ -71,13 +71,15 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = test.edit();
 
         if(!test.contains("favoriteGage"))
-            editor.putInt("favoriteGage", 100);
+            editor.putInt("favoriteGage", 50);
         if(!test.contains("progressCount"))
             editor.putInt("progressCount",0);
         editor.commit(); //완료한다.
 
         //favoriteGage=test.getInt("favoriteGage",100);
-        favoriteText.setText(String.valueOf(test.getInt("favoriteGage",100)));
+        favoriteGage=test.getInt("favoriteGage",100);
+        favoriteText.setText(String.valueOf(favoriteGage));
+        Log.v("checkFavorite","from main activity, get favoriteGage: "+favoriteGage);
 
 
         //북쪽 로딩으로 가는 버튼

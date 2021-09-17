@@ -31,8 +31,6 @@ public class NorthMain extends AppCompatActivity {
         //만약 중간에 호감도가 50보다 떨어진다면, 실패화면
 
 
-
-
     }
 
     @Override

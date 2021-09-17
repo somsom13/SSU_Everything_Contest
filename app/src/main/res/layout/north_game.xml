@@ -19,45 +19,45 @@
         <TextView
             android:id="@+id/progress"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1/60"
-            android:textColor="#ffffff"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:fontFamily="@font/gowunbatang_regular"
-            android:textSize="30sp"
-            android:layout_marginLeft="10dp"/>
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="30sp" />
 
         <ImageButton
             android:id="@+id/homeIconButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/home_icon"
-            android:background="#00ffffff"
-            app:tint="@color/white"
             android:layout_gravity="center"
-            android:layout_marginLeft="80dp"/>
+            android:layout_marginLeft="80dp"
+            android:background="#00ffffff"
+            app:srcCompat="@drawable/home_icon"
+            app:tint="@color/white" />
 
         <TextView
             android:id="@+id/fav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="favorite"
-            android:fontFamily="@font/gowunbatang_regular"
-            android:background="@color/purple_200"
-            android:textColor="@color/white"
+            android:layout_width="43dp"
+
+            android:layout_height="43dp"
             android:layout_marginLeft="100dp"
-            />
+            android:layout_marginTop="0dp"
+            android:background="@drawable/favorite_heart"
+            android:fontFamily="@font/gowunbatang_regular"
+            android:gravity="center"
+            android:text="favorite"
+            android:textColor="@color/white" />
 
     </LinearLayout>
-
-
 
     <LinearLayout
         android:id="@+id/middle"
         android:layout_width="match_parent"
         android:layout_height="709dp"
         android:layout_weight="5"
-        android:background="@drawable/north_soongsil"
-        android:orientation="vertical" >
+        android:background="@drawable/soongsil_black1"
+        android:orientation="vertical">
 
 
         <LinearLayout
@@ -69,40 +69,41 @@
                 android:id="@+id/northSay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/game_question_button"
+                android:background="@drawable/question_border"
                 android:fontFamily="@font/gowunbatang_regular"
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="북한동기가 하는 말"
                 android:textColor="@color/white"
-                android:textSize="25sp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:textSize="50px" />
         </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_weight="2">
-                <ImageView
-                    android:id="@+id/character1"
-                    android:layout_width="130dp"
-                    android:layout_height="168dp"
-                    android:layout_gravity="bottom"
-                    android:fontFamily="@font/gowunbatang_bold"
-                    app:srcCompat="@drawable/north_character" />
 
-                <ImageView
-                    android:id="@+id/character2"
-                    android:layout_width="130dp"
-                    android:layout_height="162dp"
-                    android:layout_gravity="bottom"
-                    app:srcCompat="@drawable/south_character"
-                    android:layout_marginLeft="120dp"
-                    />
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/character1"
+                android:layout_width="130dp"
+                android:layout_height="168dp"
+                android:layout_gravity="bottom"
+                android:fontFamily="@font/gowunbatang_bold"
+                app:srcCompat="@drawable/north_character" />
+
+            <ImageView
+                android:id="@+id/character2"
+                android:layout_width="130dp"
+                android:layout_height="162dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="120dp"
+                app:srcCompat="@drawable/south_character" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -120,73 +121,76 @@
 
 
             >
+
             <TextView
                 android:id="@+id/choose1"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
-                android:layout_weight="1"
-                android:text="선택지1"
-                android:fontFamily="@font/gowunbatang_regular"
-                android:textSize="15sp"
-                android:padding="10dp"
-                android:textColor="@color/white"
                 android:layout_gravity="center"
-                android:background="@drawable/game_answer_button"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/game_answer_button"
+                android:fontFamily="@font/gowunbatang_regular"
                 android:gravity="center"
-            />
+                android:padding="10dp"
+                android:text="선택지1"
+                android:textColor="@color/white"
+                android:textSize="40px" />
+
             <TextView
                 android:id="@+id/choose2"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
-                android:layout_weight="1"
-                android:text="선택지2"
-                android:fontFamily="@font/gowunbatang_regular"
-                android:textSize="15sp"
-                android:padding="10dp"
-                android:textColor="@color/white"
                 android:layout_gravity="center"
-                android:background="@drawable/game_answer_button"
-                android:layout_marginRight="10dp"
                 android:layout_marginLeft="5dp"
-                android:gravity="center"/>
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/game_answer_button"
+                android:fontFamily="@font/gowunbatang_regular"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="선택지2"
+                android:textColor="@color/white"
+                android:textSize="40px" />
         </LinearLayout>
         <LinearLayout
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_weight="1">
+
             <TextView
                 android:id="@+id/choose3"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
-                android:layout_weight="1"
-                android:text="선택지3"
-                android:fontFamily="@font/gowunbatang_regular"
-                android:textSize="15sp"
-                android:padding="10dp"
-                android:textColor="@color/white"
                 android:layout_gravity="center"
-                android:background="@drawable/game_answer_button"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="5dp"
-                android:gravity="center"/>
+                android:layout_weight="1"
+                android:background="@drawable/game_answer_button"
+                android:fontFamily="@font/gowunbatang_regular"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="선택지3"
+                android:textColor="@color/white"
+                android:textSize="40px" />
             />
+
             <TextView
                 android:id="@+id/choose4"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
-                android:layout_weight="1"
-                android:text="선택지4"
-                android:fontFamily="@font/gowunbatang_regular"
-                android:textSize="15sp"
-                android:padding="10dp"
-                android:textColor="@color/white"
                 android:layout_gravity="center"
-                android:background="@drawable/game_answer_button"
-                android:layout_marginRight="10dp"
                 android:layout_marginLeft="5dp"
-                android:gravity="center"/>
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/game_answer_button"
+                android:fontFamily="@font/gowunbatang_regular"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="선택지4"
+                android:textColor="@color/white"
+                android:textSize="40px" />
         </LinearLayout>
     />
     </LinearLayout>

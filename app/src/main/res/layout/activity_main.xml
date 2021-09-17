@@ -35,25 +35,18 @@
         app:tint="@color/white"
         tools:ignore="MissingConstraints" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/editbox_background_normal"
-        app:tint="@color/purple_200"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="27dp" />
-
     <TextView
         android:id="@+id/fav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/favorite_heart"
+        android:fontFamily="@font/gowunbatang_regular"
+        android:gravity="center"
         android:text="favorite"
+        android:textColor="@color/white"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="27dp" />
+         />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

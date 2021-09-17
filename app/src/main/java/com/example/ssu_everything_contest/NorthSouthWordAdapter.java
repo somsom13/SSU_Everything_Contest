@@ -1,6 +1,7 @@
 package com.example.ssu_everything_contest;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.SQLException;
 import android.graphics.Color;
 import android.util.Log;
@@ -13,7 +14,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class NorthSouthWordAdapter extends BaseAdapter {
-
     Context mContext=null;
     LayoutInflater mLayoutInflater=null;
     ArrayList<NorthWordSouthWordData> words;
@@ -45,23 +45,26 @@ public class NorthSouthWordAdapter extends BaseAdapter {
         TextView northText=(TextView)view.findViewById(R.id.nWord);
         TextView southText=(TextView)view.findViewById(R.id.sWord);
 
+
         northText.setText(words.get(position).getnWord());
         southText.setText(words.get(position).getsWord());
         if (words.get(position).getCheck() == true) { //이미 누른거
-            southText.setTextColor(Color.parseColor("#5A8CCA"));
-        } else { //아직 안누른거
             southText.setTextColor(Color.parseColor("#ffffff"));
+        } else { //아직 안누른거
+            southText.setTextColor(Color.parseColor("#5A8CCA"));
         }
 
         return view;
     }
 
-    public void changeStatus(int position) {
+    public int changeStatus(int position) {
+        int check;
         NorthWordSouthWordData temp=words.get(position);
         int id=temp.getID();
         Log.v("SQLcheck","sword: "+id);
         if(temp.getCheck()==false) {
             temp.setCheck(true);
+            check=1;
             String sql="UPDATE WordDictionaryData SET _CHECK='O' WHERE _ID="+id;
             try{
                 MainActivity.mDb.execSQL(sql);
@@ -71,6 +74,7 @@ public class NorthSouthWordAdapter extends BaseAdapter {
         }
         else {
             temp.setCheck(false);
+            check=-1;
             String sql="UPDATE WordDictionaryData SET _CHECK='X' WHERE _ID="+id;
             try{
                 MainActivity.mDb.execSQL(sql);
@@ -80,5 +84,6 @@ public class NorthSouthWordAdapter extends BaseAdapter {
             }
         }
         words.set(position,temp);
+        return check;
     }
 }
