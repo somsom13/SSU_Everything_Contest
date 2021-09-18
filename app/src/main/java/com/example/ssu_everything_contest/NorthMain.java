@@ -26,6 +26,8 @@ public class NorthMain extends AppCompatActivity {
         northSuccess=new NorthSuccess();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container,northGame).commit();
+
+        makeDialog();
         
         //무사히 끝나면, 성공화면!
         //만약 중간에 호감도가 50보다 떨어진다면, 실패화면
@@ -39,6 +41,13 @@ public class NorthMain extends AppCompatActivity {
         Intent intent=new Intent(NorthMain.this,MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void makeDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("").setMessage("맞추면 +2점, 틀리면 -3점이 됩니다. 호감도가 100 아래로 떨어지지 않게 주의하세요!");
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
 }

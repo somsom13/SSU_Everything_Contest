@@ -166,10 +166,8 @@ public class NorthGame extends Fragment{
             String sword=getAnswer.sword;
             String nword=getAnswer.nword;
 
-            if(favoriteGage<=70){
+            if(favoriteGage<100){
                 applyPreference();
-
-                Log.v("checkGame","favorite Gage: "+favoriteGage+", go to North Fail");
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 NorthFail fragment3 = new NorthFail();
                 transaction.replace(R.id.container, fragment3);

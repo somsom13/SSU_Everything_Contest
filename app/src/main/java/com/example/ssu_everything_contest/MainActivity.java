@@ -36,13 +36,17 @@ public class MainActivity extends AppCompatActivity {
     private int favoriteGage;
     SharedPreferences test;
     private TextView favoriteText;
-    private long backKeyPressedTime=0;
+    TextView southText;
+    TextView northText;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        southText=(TextView) findViewById(R.id.southSoongsilText);
+        northText=(TextView) findViewById(R.id.northSoongsilText);
 
         /**
          * DB연결
@@ -89,12 +93,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //favoriteGage 따라 전환 설정
-                if(test.getInt("favoriteGage",0)>=100){
+                if(northText.getVisibility()==View.GONE)
+                    northText.setVisibility(View.VISIBLE);
+                else
+                    northText.setVisibility(View.GONE);
+                if(southText.getVisibility()==View.VISIBLE)
+                    southText.setVisibility(View.GONE);
+                /*if(test.getInt("favoriteGage",0)>=100){
                     Intent intent =new Intent(getApplicationContext(),NorthLoading.class);
                     startActivity(intent);
+                    finish();
                 }else{
                     makeDialog();
-                }
+                }*/
 
             }
         });
@@ -105,11 +116,41 @@ public class MainActivity extends AppCompatActivity {
         goSouth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(southText.getVisibility()==View.GONE)
+                    southText.setVisibility(View.VISIBLE);
+                else
+                    southText.setVisibility(View.GONE);
+                if(northText.getVisibility()==View.VISIBLE)
+                    northText.setVisibility(View.GONE);
+                /*southText.setVisibility(View.VISIBLE);
                 Intent intent=new Intent(getApplicationContext(),SouthLoading.class);
                 startActivity(intent);
+                finish();*/
             }
         });
 
+
+        southText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),SouthLoading.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        northText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(test.getInt("favoriteGage",0)>=100){
+                    Intent intent =new Intent(getApplicationContext(),NorthLoading.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    makeDialog();
+                }
+            }
+        });
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
@@ -146,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void insertDataToDictionary(){
+    public static void insertDataToDictionary(){
         String sql="SELECT * FROM WordDictionaryData";
         Cursor cur = mDb.rawQuery(sql, null);
 

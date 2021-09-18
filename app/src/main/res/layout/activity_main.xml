@@ -8,6 +8,18 @@
     tools:context=".MainActivity">
 
 
+    <TextView
+        android:id="@+id/fav"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/favorite_heart"
+        android:fontFamily="@font/gowunbatang_regular"
+        android:gravity="center"
+        android:text="favorite"
+        android:textColor="@color/white"
+        tools:ignore="MissingConstraints"
+        />
 
     <ImageButton
         android:id="@+id/northButton"
@@ -22,6 +34,8 @@
         app:tint="@color/white"
         tools:ignore="MissingConstraints" />
 
+
+
     <ImageButton
         android:id="@+id/southButton"
         android:layout_width="35dp"
@@ -35,18 +49,40 @@
         app:tint="@color/white"
         tools:ignore="MissingConstraints" />
 
+
     <TextView
-        android:id="@+id/fav"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="0dp"
-        android:background="@drawable/favorite_heart"
+        android:id="@+id/northSoongsilText"
+        android:layout_width="160dp"
+        android:layout_height="75dp"
+        android:layout_marginLeft="95dp"
+        android:background="@drawable/main_text_border"
         android:fontFamily="@font/gowunbatang_regular"
         android:gravity="center"
-        android:text="favorite"
-        android:textColor="@color/white"
-        tools:ignore="MissingConstraints"
-         />
+        android:text="평양숭실"
+        android:textSize="45px"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.287"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/southSoongsilText"
+        android:layout_width="160dp"
+        android:layout_height="75dp"
+        android:layout_marginLeft="182dp"
+        android:background="@drawable/main_text_border"
+        android:fontFamily="@font/gowunbatang_regular"
+        android:gravity="center"
+        android:text="서울숭실"
+        android:textSize="50px"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.287"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6"
+        tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -68,5 +104,19 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="302dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="170dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="265dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
