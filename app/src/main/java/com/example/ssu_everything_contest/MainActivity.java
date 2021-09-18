@@ -8,6 +8,7 @@ import androidx.lifecycle.OnLifecycleEvent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -107,6 +108,19 @@ public class MainActivity extends AppCompatActivity {
                     makeDialog();
                 }*/
 
+            }
+        });
+
+        favoriteText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                /*String sql="UPDATE WordDictionaryData SET A1='헉 낚시하러 가시나봐!' WHERE _ID="+35;
+                try{
+                    MainActivity.mDb.execSQL(sql);
+                }catch (SQLException e){
+                    Log.v("SQLcheck","update error");
+                }*/
             }
         });
 
