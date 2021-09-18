@@ -106,8 +106,9 @@ public class SouthMain extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         if(alert.equals("firstAlert"))
             builder.setTitle("").setMessage("학습한 단어를 클릭하세요!\n오른쪽 남한말이 표시되어 있으면 학습 완료한 단어, 표시되어 있지 않으면 학습이 안된 단어입니다.\n각 단어를 학습 완료할 때 마다 호감도가 +1 됩니다!");
-        if(alert.equals("scoreAlert"))
-            builder.setTitle("").setMessage("학습 점수: "+addedScore+"점");
+        if(alert.equals("scoreAlert")) {
+            builder.setTitle("").setMessage("학습 점수: " + addedScore + "점");
+        }
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
