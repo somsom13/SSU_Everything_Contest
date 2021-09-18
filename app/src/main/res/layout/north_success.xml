@@ -1,14 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:id="@+id/division"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/division"
+        android:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/division_north"
+        android:layout_width="120dp"
+        android:layout_height="258dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="60dp"
+        app:srcCompat="@drawable/north_charac_normal"
+        android:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/division_south"
+        android:layout_width="120dp"
+        android:layout_height="258dp"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="300dp"
+        app:srcCompat="@drawable/south_charac_normal"
+        android:visibility="visible"/>
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/divisionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="success!!"
-        tools:layout_editor_absoluteX="164dp"
-        tools:layout_editor_absoluteY="277dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="'우리 서로를 더 잘 이해하게 된 것 같아'"
+        android:fontFamily="@font/gowunbatang_bold"
+        android:textSize="40px"
+        android:layout_gravity="center"
+        android:background="#80000000"
+        android:textColor="@color/white"
+        android:padding="10dp"
+        android:visibility="visible"
+        />
+
+    <ImageView
+        android:id="@+id/one"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/success"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/one_north"
+        android:layout_width="120dp"
+        android:layout_height="258dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="200dp"
+        app:srcCompat="@drawable/north_charac_smile"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/one_south"
+        android:layout_width="120dp"
+        android:layout_height="258dp"
+        android:layout_marginLeft="190dp"
+        android:layout_marginTop="200dp"
+        app:srcCompat="@drawable/south_charac_smile"
+        android:visibility="invisible"/>
+
+
+
+
+</FrameLayout>
+
+

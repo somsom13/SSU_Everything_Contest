@@ -33,6 +33,24 @@ public class NorthMain extends AppCompatActivity {
         //만약 중간에 호감도가 50보다 떨어진다면, 실패화면
 
 
+        //실패로 가는 버튼
+        Button goSouth=(Button)findViewById(R.id.failButton);
+        goSouth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, northFail).commit();
+            }
+        });
+
+        //성공으로 가는 버튼
+        Button goNorth=(Button)findViewById(R.id.successButton);
+        goNorth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, northSuccess).commit();
+            }
+        });
+
     }
 
     @Override
