@@ -25,7 +25,7 @@ import org.w3c.dom.Text;
 import static android.content.Context.MODE_PRIVATE;
 
 public class NorthGame extends Fragment{
-    private TextView question,progressGage,favorite;
+    private TextView question,progressGage,favorite,wordView;
     private TextView a1,a2,a3,a4;
     int progressCount;
     int favoriteGage;
@@ -54,6 +54,7 @@ public class NorthGame extends Fragment{
         a3=(TextView) rootView.findViewById(R.id.choose3);
         a4=(TextView) rootView.findViewById(R.id.choose4);
         favorite=(TextView) rootView.findViewById(R.id.fav);
+        wordView=(TextView)rootView.findViewById(R.id.wordView);
 
         test = this.getActivity().getSharedPreferences("test", MODE_PRIVATE);
         editor = test.edit();
@@ -132,6 +133,8 @@ public class NorthGame extends Fragment{
             transaction.replace(R.id.container, fragment2);
             transaction.commit();
         }
+
+        wordView.setVisibility(View.INVISIBLE);
        nCharacterNormal.setVisibility(View.VISIBLE);
        sCharacterNormal.setVisibility(View.VISIBLE);
        nCharacterSmile.setVisibility(View.INVISIBLE);
@@ -157,14 +160,14 @@ public class NorthGame extends Fragment{
             return 1;
         }else{
             Log.v("checkGame","wrong answer! favoriteGage: "+(favoriteGage-=3));
-            //dialog표시, 호감도 up, 진짜 정답 표시 (background 컬러 변경)
-            //sendDialog("wrong");
             Toast.makeText(getActivity(),"-3p",Toast.LENGTH_SHORT).show();
 
             question.setText("동문서답이네...내 얘기 안듣고 있나?");
             WordGameList getAnswer=MainActivity.wordGameListList.get(progressCount);
             String sword=getAnswer.sword;
             String nword=getAnswer.nword;
+            wordView.setText(nword+" : "+sword);
+            wordView.setVisibility(View.VISIBLE);
 
             if(favoriteGage<100){
                 applyPreference();
