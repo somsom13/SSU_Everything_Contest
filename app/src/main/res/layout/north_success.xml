@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:text="'우리 서로를 더 잘 이해하게 된 것 같아'"
         android:fontFamily="@font/gowunbatang_bold"
-        android:textSize="40px"
+        android:textSize="45px"
         android:layout_gravity="center"
         android:background="#80000000"
         android:textColor="@color/white"
