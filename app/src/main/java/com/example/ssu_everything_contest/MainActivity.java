@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         mDBHelper.close();
         mDb=mDBHelper.getReadableDatabase();
 
+        updateDB();
 
         /**
          * 단어사전, 게임리스트 생성 및 데이터 추가
@@ -111,18 +112,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        favoriteText.setOnClickListener(new View.OnClickListener() {
+        /*favoriteText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                /*String sql="UPDATE WordDictionaryData SET A1='헉 낚시하러 가시나봐!' WHERE _ID="+35;
+                mDb.beginTransaction();
+                String sql="UPDATE WordDictionaryData SET ANSWER=1 WHERE _ID="+15;
+                String sql2="UPDATE WordDictionaryData SET A1='헉 낚시하러 가시나봐!' WHERE _ID="+35;
                 try{
                     MainActivity.mDb.execSQL(sql);
+                    MainActivity.mDb.execSQL(sql2);
                 }catch (SQLException e){
                     Log.v("SQLcheck","update error");
-                }*/
+                }
+                Log.v("SQLcheck","update ok");
+                mDb.setTransactionSuccessful();
+                mDb.endTransaction();
             }
-        });
+        });*/
 
         //남쪽 로딩으로 가는 버튼
         ImageButton goSouth=(ImageButton)findViewById(R.id.southButton);
@@ -227,6 +234,22 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle("").setMessage("호감도가 낮아서 평양숭실에 방문할 수 없습니다. \n호감도를 100이상으로 높여주세요!");
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    private void updateDB(){
+
+        mDb.beginTransaction();
+        String sql="UPDATE WordDictionaryData SET ANSWER=1 WHERE _ID="+15;
+        String sql2="UPDATE WordDictionaryData SET A1='헉 낚시하러 가시나봐!' WHERE _ID="+35;
+        try{
+            MainActivity.mDb.execSQL(sql);
+            MainActivity.mDb.execSQL(sql2);
+        }catch (SQLException e){
+            Log.v("SQLcheck","update error");
+        }
+        Log.v("SQLcheck","update ok");
+        mDb.setTransactionSuccessful();
+        mDb.endTransaction();
     }
 
 
