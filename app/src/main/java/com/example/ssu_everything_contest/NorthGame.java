@@ -4,9 +4,13 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -151,6 +155,7 @@ public class NorthGame extends Fragment{
 
 
     private int checkAnswer(int chosen){
+        showWord();
         if(chosen==realAnswer) {
             Log.v("checkGame", "correct answer!, favoriteGage: "+(favoriteGage+=2));
             //dialog 표시, 호감도 up
@@ -163,11 +168,6 @@ public class NorthGame extends Fragment{
             Toast.makeText(getActivity(),"-3p",Toast.LENGTH_SHORT).show();
 
             question.setText("동문서답이네...내 얘기 안듣고 있나?");
-            WordGameList getAnswer=MainActivity.wordGameListList.get(progressCount);
-            String sword=getAnswer.sword;
-            String nword=getAnswer.nword;
-            wordView.setText(nword+" : "+sword);
-            wordView.setVisibility(View.VISIBLE);
 
             if(favoriteGage<100){
                 applyPreference();
@@ -203,14 +203,6 @@ public class NorthGame extends Fragment{
         editor.apply();
     }
 
-    private void sendDialog(String result){
-        Log.v("checkGame","enter send dialog");
-        Bundle args=new Bundle();
-        args.putString("answerResult",result);
-        DialogFragment dialogFragment=new MyDialogFragment();
-        dialogFragment.setArguments(args);
-        dialogFragment.show(getActivity().getSupportFragmentManager(),"test");
-    }
 
     private void waitAndProgress(){
 
@@ -234,6 +226,20 @@ public class NorthGame extends Fragment{
             }
         }    ,2000);
 
+    }
+
+    private void showWord(){
+        WordGameList getAnswer=MainActivity.wordGameListList.get(progressCount);
+        String sword=getAnswer.sword;
+        String nword=getAnswer.nword;
+        String content=nword+" : "+sword;
+        SpannableString spannableString=new SpannableString(content);
+        int start=content.indexOf(sword);
+        int end=start+sword.length();
+        Log.v("checkSpan","start: "+start+", end: "+end);
+        spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#C28FF0")),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        wordView.setText(spannableString);
+        wordView.setVisibility(View.VISIBLE);
     }
 
 

@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -33,12 +34,11 @@ public class MainActivity extends AppCompatActivity {
     public static SQLiteDatabase mDb;
     public static List<WordGameList> wordGameListList=new ArrayList<>(); //게임용 리스트
     public static ArrayList<NorthWordSouthWordData> nsWordList=new ArrayList<>();//단어사전 리스트
-    public final static int lowFavorite=50;//실패하는 점수 (기준점수)
     private int favoriteGage;
     SharedPreferences test;
+    SharedPreferences.Editor editor;
     private TextView favoriteText;
-    TextView southText;
-    TextView northText;
+    TextView southText,northText;
 
 
     @Override
@@ -74,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
 
         favoriteText=(TextView) findViewById(R.id.fav);
         test = getSharedPreferences("test", MODE_PRIVATE);
-        SharedPreferences.Editor editor = test.edit();
+        editor = test.edit();
 
         if(!test.contains("favoriteGage"))
-            editor.putInt("favoriteGage", 50);
+            editor.putInt("favoriteGage", 0);
         if(!test.contains("progressCount"))
             editor.putInt("progressCount",0);
         editor.commit(); //완료한다.
@@ -172,11 +172,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+        favoriteText.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                easterEgg();
+                return false;
+            }
+        });
+
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void initializeFavoriteGage() {
-        Log.v("checkFavorite","enter favorite resume");
         favoriteGage=test.getInt("favoriteGage",100);
         favoriteText.setText(String.valueOf(favoriteGage));
     }
@@ -247,9 +256,15 @@ public class MainActivity extends AppCompatActivity {
         }catch (SQLException e){
             Log.v("SQLcheck","update error");
         }
-        Log.v("SQLcheck","update ok");
         mDb.setTransactionSuccessful();
         mDb.endTransaction();
+    }
+
+    private void easterEgg(){
+        editor.putInt("favoriteGage",90);
+        editor.apply();
+        favoriteGage=test.getInt("favoriteGage",90);
+        favoriteText.setText(String.valueOf(favoriteGage));
     }
 
 
