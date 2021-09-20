@@ -23,14 +23,14 @@ public class SouthFoodMain extends AppCompatActivity {
         Fnormal = new SouthFoodNormal();
         Fpublic = new SouthFoodPublic();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, Fpublic).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_south_food, Fpublic).commit();
 
         //퍼블릭으로 가는 버튼
         Button pButton = (Button) findViewById(R.id.publicButton);
         pButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, Fpublic).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container_south_food, Fpublic).commit();
             }
         });
 
@@ -39,7 +39,7 @@ public class SouthFoodMain extends AppCompatActivity {
         aButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, Falcohol).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container_south_food, Falcohol).commit();
             }
         });
 
@@ -48,7 +48,7 @@ public class SouthFoodMain extends AppCompatActivity {
         nButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.container, Fnormal).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container_south_food, Fnormal).commit();
             }
         });
     }

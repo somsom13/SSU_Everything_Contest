@@ -39,4 +39,10 @@
         tools:layout_editor_absoluteY="48dp"
         android:fontFamily="@font/gowunbatang_bold"
         android:textSize="36px"/>
+
+    <FrameLayout
+        android:id="@+id/container_south_food"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>
