@@ -23,6 +23,8 @@
         <activity android:name=".SouthLoading" />
         <activity android:name=".SouthMain" />
         <activity android:name=".SouthSchool" />
+        <activity android:name=".SouthCulture"/>
+        <activity android:name=".CultureDetail"/>
     </application>
 
 </manifest>

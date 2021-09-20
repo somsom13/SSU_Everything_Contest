@@ -1,9 +1,11 @@
 package com.example.ssu_everything_contest;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +31,7 @@ public class SouthMain extends AppCompatActivity {
     ImageButton searchButton;
     String searchWord;
     private int addedScore=0;
+    AlertDialog alertDialog=null;
 
     //ArrayList<NorthWordSouthWordData> nsWordList;
 
@@ -104,13 +108,16 @@ public class SouthMain extends AppCompatActivity {
 
     private void makeDialog(String alert) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        if(alert.equals("firstAlert"))
+        if(alert.equals("firstAlert")) {
             builder.setTitle("").setMessage("학습한 단어를 클릭하세요!\n오른쪽 남한말이 표시되어 있으면 학습 완료한 단어, 표시되어 있지 않으면 학습이 안된 단어입니다.\n각 단어를 학습 완료할 때 마다 호감도가 +1 됩니다!");
-        if(alert.equals("scoreAlert")) {
-            builder.setTitle("").setMessage("학습 점수: " + addedScore + "점");
+            alertDialog = builder.create();
+            alertDialog.show();
         }
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        if(alert.equals("scoreAlert")) {
+            Toast.makeText(this,"학습한 점수: "+addedScore,Toast.LENGTH_SHORT).show();
+            addedScore=0;
+        }
+
     }
 
     @Override
@@ -118,11 +125,16 @@ public class SouthMain extends AppCompatActivity {
         super.onBackPressed();
         Log.v("checkSouth","added score: "+addedScore);
         makeDialog("scoreAlert");
-        addedScore=0;
-        Intent intent=new Intent(SouthMain.this,MainActivity.class);
-        Log.v("checkFavorite","close south, check favorite: "+test.getInt("favoriteGage",10));
+        Intent intent = new Intent(SouthMain.this, SouthSchool.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if(alertDialog!=null&&alertDialog.isShowing())
+            alertDialog.dismiss();
     }
 
 

@@ -35,7 +35,9 @@ public class SouthSchool extends AppCompatActivity {
         toCulture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent=new Intent(getApplicationContext(),SouthCulture.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
