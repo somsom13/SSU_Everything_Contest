@@ -10,13 +10,17 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -265,6 +269,12 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
         favoriteGage=test.getInt("favoriteGage",90);
         favoriteText.setText(String.valueOf(favoriteGage));
+
+        //test base64 to bitmap and show
+        /*byte[] decodedString = Base64.decode("iVBORw0KGgoAAAANSUhEUgAAAB0AAABrCAMAAAHLMUl3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACEUExURQAAAJ+fnwAAAAAAAKOjowAAADAwMAAAAH9/fwwMDAAAAAAAAAAAAIODgwAAAKurqwAAAK+vrwAAABgYGP///wAAAAAAAI+PjwAAAAAAAAAAAAAAAJOTkwAAAAAAALu7uwAAAAAAAHBwcCQkJL+/vwAAAAAAAAAAAHR0dMPDwwAAAAQEBBbKthAAAAArdFJOUwD/wwj/0/8Y///jjyj/8/84/7f//wQM/88U13D/JOf/gCz///88/6v//7sko8INAAAACXBIWXMAABcRAAAXEQHKJvM/AAABc0lEQVQ4T+2U21KEMBBEI14QxcVLWBQV19VtRP7//+xMZkO2pCzlyYecKiozaQghzLRZQs0LNjemsh3DXiaXkNvRmM5WDJcv8jvWwJpDWVhS7BhmV00rUgD/e4SVAPwABm4IgQr7G/0gxLEj5Yf8nNcAXLV7WEPurMHKJyVG+QXWjiiZd3jXfMBK7mjRMKswldknzpBp7HnUcR4cbielMSmN+UvaA5Hf9thup6rM8GFtg3uf+RK2R76GW1QuczVN4+9w4zNf8a8Qb3UUoMGG/iikPUwu3cNmeXaZdtO+mQhz79EKe+9YQ6GeGjFis9loNAdX1GiOpMYkNSapMUmNWa7Wl1T7WSMzNV0Zb7xuIxNU1hnnt3TPc47ZoZ47TVyaNIzbYKkmb4HxSTVHNQIXYsem7KipnwdeCqCjvlsBxaCTE8MdsKK3zz08uEevZWl98Ykq/rVu2UB+GjbdUIu27NEPdp+TPehcjBzWt6OYoB4fszFf1a5PkMTHU5YAAAAASUVORK5CYII=", Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        ImageView imageview=(ImageView) findViewById(R.id.imageView);
+        imageview.setImageBitmap(decodedByte);*/
     }
 
 
