@@ -65,7 +65,7 @@ public class NorthSouthWordAdapter extends BaseAdapter {
         if(temp.getCheck()==false) {
             temp.setCheck(true);
             check=1;
-            String sql="UPDATE WordDictionaryData SET _CHECK='O' WHERE _ID="+id;
+            String sql="UPDATE WordDictionaryDatas SET _CHECK='O' WHERE _ID="+id;
             try{
                 MainActivity.mDb.execSQL(sql);
             }catch (SQLException e){
@@ -75,7 +75,7 @@ public class NorthSouthWordAdapter extends BaseAdapter {
         else {
             temp.setCheck(false);
             check=-1;
-            String sql="UPDATE WordDictionaryData SET _CHECK='X' WHERE _ID="+id;
+            String sql="UPDATE WordDictionaryDatas SET _CHECK='X' WHERE _ID="+id;
             try{
                 MainActivity.mDb.execSQL(sql);
             }catch (SQLException e){

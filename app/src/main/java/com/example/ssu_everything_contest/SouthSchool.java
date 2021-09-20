@@ -21,7 +21,6 @@ public class SouthSchool extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),SouthMain.class);
                 startActivity(intent);
-
             }
         });
 
@@ -30,7 +29,6 @@ public class SouthSchool extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),SouthFoodMain.class);
                 startActivity(intent);
-
             }
         });
 
@@ -43,4 +41,13 @@ public class SouthSchool extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent=new Intent(SouthSchool.this,MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

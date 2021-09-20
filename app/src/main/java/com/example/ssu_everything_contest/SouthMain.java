@@ -48,9 +48,6 @@ public class SouthMain extends AppCompatActivity {
         SharedPreferences.Editor editor = test.edit();
         favoriteGage=test.getInt("favoriteGage",50);
 
-
-
-
         ListView listView=(ListView)findViewById(R.id.southListView);
         final NorthSouthWordAdapter nsAdapter=new NorthSouthWordAdapter(this,MainActivity.nsWordList);
 
@@ -123,10 +120,10 @@ public class SouthMain extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Log.v("checkSouth","added score: "+addedScore);
+        Log.v("checkSouth","favorite gage:  "+test.getInt("favoriteGage",90));
         makeDialog("scoreAlert");
-        Intent intent = new Intent(SouthMain.this, SouthSchool.class);
-        startActivity(intent);
+        //Intent intent = new Intent(SouthMain.this, SouthSchool.class);
+        //startActivity(intent);
         finish();
     }
 

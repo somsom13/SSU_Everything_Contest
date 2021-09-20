@@ -22,7 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private Context mContext;
 
     private static String databasePath="";
-    private static String databaseName="SSU_Everything.db";
+    private static String databaseName="Everything_1.db";
 
     private SQLiteDatabase mDatabase;
 

@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CultureDetail extends AppCompatActivity {
     public static int position=-1;
     public static int success=0;
+    TextView content;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +21,7 @@ public class CultureDetail extends AppCompatActivity {
 
         TextView title=(TextView)findViewById(R.id.showTitle);
         ImageView image=(ImageView)findViewById(R.id.showImage);
-        TextView content=(TextView)findViewById(R.id.showContent);
+        content=(TextView)findViewById(R.id.showContent);
         Button btn=(Button) findViewById(R.id.culture_ok);
 
         Intent intent = getIntent();
@@ -29,7 +30,8 @@ public class CultureDetail extends AppCompatActivity {
 
         CultureData newData=SouthCulture.cultureList.get(pos);
         title.setText(newData.getCultureTitle());
-        content.setText(newData.getCultureContent());
+        //content.setText(newData.getCultureContent());
+        setContentText(newData.getCultureContent());
         image.setImageResource(R.drawable.test5);
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -37,7 +39,6 @@ public class CultureDetail extends AppCompatActivity {
             public void onClick(View view) {
                 position=pos;
                 success=1;
-                //SouthCulture.cultureDataAdapter.changeStatus(pos);
                 finish();
             }
         });
@@ -56,5 +57,12 @@ public class CultureDetail extends AppCompatActivity {
         res[0]=position;
         res[1]=success;
         return res;
+    }
+
+    private void setContentText(String contentText){
+        String[] splitRes=contentText.split("n");
+        for(String s:splitRes){
+            ;
+        }
     }
 }

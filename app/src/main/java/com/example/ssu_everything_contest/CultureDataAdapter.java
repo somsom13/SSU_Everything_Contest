@@ -56,15 +56,20 @@ public class CultureDataAdapter extends BaseAdapter {
 
         String content=cultureData.get(position).getCultureTitle();
         String origTitle=content;
-        content=content+"\n"+cultureData.get(position).getCultureContent().split("\n")[0];
+        String myString=cultureData.get(position).getCultureContent().split("n")[0];
+        myString=myString.substring(0,myString.length()-1);
+        content+="\n"+myString;
         SpannableString spannableString=new SpannableString(content);
         int start=content.indexOf(origTitle);
         int end=start+origTitle.length();
         spannableString.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         spannableString.setSpan(new RelativeSizeSpan(1.3f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         title.setText(spannableString);
-        //image.setImageBitmap(cultureData.get(position).getImageBitmap());
-        image.setImageResource(R.drawable.test5);
+
+
+        image.setImageResource(R.drawable.test5);//img 경우별로 나눠서 넣기!
+
+
         if (cultureData.get(position).getCheck() == true) { //이미 누른거
             checkButton.setImageResource(R.drawable.full_round);
         } else { //아직 안누른거
@@ -79,12 +84,12 @@ public class CultureDataAdapter extends BaseAdapter {
         int id=temp.getID();
         if(temp.getCheck()==false) {
             temp.setCheck(true);
-           /* String sql="UPDATE WordDictionaryData SET _CHECK='O' WHERE _ID="+id;
+           String sql="UPDATE CultureData SET _CHECK='O' WHERE _ID="+id;
             try{
                 MainActivity.mDb.execSQL(sql);
-            }catch (SQLException e){
-                Log.v("SQLcheck","update error");
-            }*/
+            }catch (SQLException e) {
+                Log.v("SQLcheck", "update error");
+            }
         }
 
         cultureData.set(position,temp);

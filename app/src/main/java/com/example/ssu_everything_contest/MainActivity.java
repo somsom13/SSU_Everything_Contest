@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         mDBHelper.close();
         mDb=mDBHelper.getReadableDatabase();
 
-        updateDB();
+        //updateDB();
 
         /**
          * 단어사전, 게임리스트 생성 및 데이터 추가
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         //favoriteGage=test.getInt("favoriteGage",100);
         favoriteGage=test.getInt("favoriteGage",100);
+        Log.v("favoriteGage","get favorite gage in main oncreate");
         favoriteText.setText(String.valueOf(favoriteGage));
         Log.v("checkFavorite","from main activity, get favoriteGage: "+favoriteGage);
 
@@ -121,25 +122,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        /*favoriteText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                mDb.beginTransaction();
-                String sql="UPDATE WordDictionaryData SET ANSWER=1 WHERE _ID="+15;
-                String sql2="UPDATE WordDictionaryData SET A1='헉 낚시하러 가시나봐!' WHERE _ID="+35;
-                try{
-                    MainActivity.mDb.execSQL(sql);
-                    MainActivity.mDb.execSQL(sql2);
-                }catch (SQLException e){
-                    Log.v("SQLcheck","update error");
-                }
-                Log.v("SQLcheck","update ok");
-                mDb.setTransactionSuccessful();
-                mDb.endTransaction();
-            }
-        });*/
 
         //남쪽 로딩으로 가는 버튼
         ImageButton goSouth=(ImageButton)findViewById(R.id.southButton);
@@ -208,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),SouthLoading.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -217,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
                 if(test.getInt("favoriteGage",0)>=100){
                     Intent intent =new Intent(getApplicationContext(),NorthLoading.class);
                     startActivity(intent);
+                    finish();
                 }else{
                     makeDialog();
                 }
@@ -229,6 +213,7 @@ public class MainActivity extends AppCompatActivity {
                 if(test.getInt("favoriteGage",0)>=100){
                     Intent intent =new Intent(getApplicationContext(),NorthFoodMain.class);
                     startActivity(intent);
+                    finish();
                 }else{
                     makeDialog();
                 }
@@ -241,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
                 if(test.getInt("favoriteGage",0)>=100){
                     Intent intent =new Intent(getApplicationContext(),NorthCultureMain.class);
                     startActivity(intent);
+                    finish();
                 }else{
                     makeDialog();
                 }
@@ -261,13 +247,14 @@ public class MainActivity extends AppCompatActivity {
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void initializeFavoriteGage() {
         favoriteGage=test.getInt("favoriteGage",100);
+        Log.v("favoriteGage","enter resume");
         favoriteText.setText(String.valueOf(favoriteGage));
     }
 
 
 
     private void insertDataToGame(){
-        String sql="SELECT * FROM WordDictionaryData WHERE question not null";
+        String sql="SELECT * FROM WordDictionaryDatas WHERE question not null";
         Cursor cur = mDb.rawQuery(sql, null);
 
         if (cur != null) {
@@ -292,7 +279,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void insertDataToDictionary(){
-        String sql="SELECT * FROM WordDictionaryData";
+        String sql="SELECT * FROM WordDictionaryDatas";
         Cursor cur = mDb.rawQuery(sql, null);
 
         if (cur != null) {
@@ -322,8 +309,8 @@ public class MainActivity extends AppCompatActivity {
     private void updateDB(){
 
         mDb.beginTransaction();
-        String sql="UPDATE WordDictionaryData SET ANSWER=1 WHERE _ID="+15;
-        String sql2="UPDATE WordDictionaryData SET A1='헉 낚시하러 가시나봐!' WHERE _ID="+35;
+        String sql="UPDATE WordDictionaryDatas SET ANSWER=1 WHERE _ID="+15;
+        String sql2="UPDATE WordDictionaryDatas SET A1='헉 낚시하러 가시나봐!' WHERE _ID="+35;
         try{
             MainActivity.mDb.execSQL(sql);
             MainActivity.mDb.execSQL(sql2);
@@ -339,12 +326,6 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
         favoriteGage=test.getInt("favoriteGage",90);
         favoriteText.setText(String.valueOf(favoriteGage));
-
-        //test base64 to bitmap and show
-        /*byte[] decodedString = Base64.decode("iVBORw0KGgoAAAANSUhEUgAAAB0AAABrCAMAAAHLMUl3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACEUExURQAAAJ+fnwAAAAAAAKOjowAAADAwMAAAAH9/fwwMDAAAAAAAAAAAAIODgwAAAKurqwAAAK+vrwAAABgYGP///wAAAAAAAI+PjwAAAAAAAAAAAAAAAJOTkwAAAAAAALu7uwAAAAAAAHBwcCQkJL+/vwAAAAAAAAAAAHR0dMPDwwAAAAQEBBbKthAAAAArdFJOUwD/wwj/0/8Y///jjyj/8/84/7f//wQM/88U13D/JOf/gCz///88/6v//7sko8INAAAACXBIWXMAABcRAAAXEQHKJvM/AAABc0lEQVQ4T+2U21KEMBBEI14QxcVLWBQV19VtRP7//+xMZkO2pCzlyYecKiozaQghzLRZQs0LNjemsh3DXiaXkNvRmM5WDJcv8jvWwJpDWVhS7BhmV00rUgD/e4SVAPwABm4IgQr7G/0gxLEj5Yf8nNcAXLV7WEPurMHKJyVG+QXWjiiZd3jXfMBK7mjRMKswldknzpBp7HnUcR4cbielMSmN+UvaA5Hf9thup6rM8GFtg3uf+RK2R76GW1QuczVN4+9w4zNf8a8Qb3UUoMGG/iikPUwu3cNmeXaZdtO+mQhz79EKe+9YQ6GeGjFis9loNAdX1GiOpMYkNSapMUmNWa7Wl1T7WSMzNV0Zb7xuIxNU1hnnt3TPc47ZoZ47TVyaNIzbYKkmb4HxSTVHNQIXYsem7KipnwdeCqCjvlsBxaCTE8MdsKK3zz08uEevZWl98Ykq/rVu2UB+GjbdUIu27NEPdp+TPehcjBzWt6OYoB4fszFf1a5PkMTHU5YAAAAASUVORK5CYII=", Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        ImageView imageview=(ImageView) findViewById(R.id.imageView);
-        imageview.setImageBitmap(decodedByte);*/
     }
 
 
