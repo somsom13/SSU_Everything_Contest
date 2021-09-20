@@ -22,6 +22,7 @@
         <activity android:name=".NorthSuccess" />
         <activity android:name=".SouthLoading" />
         <activity android:name=".SouthMain" />
+        <activity android:name=".SouthSchool" />
     </application>
 
 </manifest>

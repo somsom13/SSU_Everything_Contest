@@ -24,7 +24,7 @@ public class SouthLoading extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SouthLoading.this, SouthMain.class);
+                Intent intent = new Intent(SouthLoading.this, SouthSchool.class);
                 startActivity(intent);
                 finish();
             }
