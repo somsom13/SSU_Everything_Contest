@@ -32,7 +32,7 @@ public class CultureDetail extends AppCompatActivity {
         title.setText(newData.getCultureTitle());
         //content.setText(newData.getCultureContent());
         setContentText(newData.getCultureContent());
-        image.setImageResource(R.drawable.test5);
+        image.setImageResource(setViewImg.idListForCultureData[pos]);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,9 +60,12 @@ public class CultureDetail extends AppCompatActivity {
     }
 
     private void setContentText(String contentText){
+        String myText="";
         String[] splitRes=contentText.split("n");
         for(String s:splitRes){
-            ;
+            s=s.substring(0,s.length()-1);
+            myText+=s+"\n";
         }
+        content.setText(myText);
     }
 }

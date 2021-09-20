@@ -28,6 +28,7 @@
         <activity android:name=".SouthFoodMain"/>
         <activity android:name=".NorthFoodMain"/>
         <activity android:name=".NorthCultureMain"/>
+        <activity android:name=".setViewImg"/>
 
     </application>
 

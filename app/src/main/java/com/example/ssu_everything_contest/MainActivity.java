@@ -68,15 +68,12 @@ public class MainActivity extends AppCompatActivity {
         mDBHelper.close();
         mDb=mDBHelper.getReadableDatabase();
 
-        //updateDB();
-
-        /**
-         * 단어사전, 게임리스트 생성 및 데이터 추가
-         * 
-         */
         insertDataToGame();
         insertDataToDictionary();
-        //Log.v("checkDictionary", String.valueOf(wordDictionaryList.size()));
+        sendImgRequest("cultureData");
+        //sendImgRequest("foodData");
+        //sendImgRequest("tourData");
+
 
         favoriteText=(TextView) findViewById(R.id.fav);
         test = getSharedPreferences("test", MODE_PRIVATE);
@@ -242,6 +239,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
@@ -306,26 +305,22 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void updateDB(){
-
-        mDb.beginTransaction();
-        String sql="UPDATE WordDictionaryDatas SET ANSWER=1 WHERE _ID="+15;
-        String sql2="UPDATE WordDictionaryDatas SET A1='헉 낚시하러 가시나봐!' WHERE _ID="+35;
-        try{
-            MainActivity.mDb.execSQL(sql);
-            MainActivity.mDb.execSQL(sql2);
-        }catch (SQLException e){
-            Log.v("SQLcheck","update error");
-        }
-        mDb.setTransactionSuccessful();
-        mDb.endTransaction();
-    }
-
     private void easterEgg(){
         editor.putInt("favoriteGage",90);
         editor.apply();
         favoriteGage=test.getInt("favoriteGage",90);
         favoriteText.setText(String.valueOf(favoriteGage));
+    }
+
+    private void sendImgRequest(String neededIn){
+        Intent intent = new Intent(MainActivity.this, setViewImg.class);
+        intent.putExtra("sender",neededIn);
+        if(neededIn.equals("foodData"))
+            ;
+        else
+            intent.putExtra("num", 10);    //값 전달
+        startActivity(intent);
+        //finish();
     }
 
 

@@ -35,15 +35,10 @@ public class SouthCulture extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 int pos=listView.getFirstVisiblePosition();
-                Log.v("checkCulture","position: "+position);
-                //상세페이지로 이동 후, 거기서 finish(), 학습 완료 여부 전달
-                /*if(어쩌구 받은 값==1)
-                    cultureDataAdapter.changeStatus(position);*/
+
                 Intent intent = new Intent(SouthCulture.this, CultureDetail.class);
-                intent.putExtra("position", position);    //값 전달
-                startActivity(intent);  //다음 activity로 넘어가기
-                //finish();
-                Log.v("checkCulture","여기로 돌아옴!");
+                intent.putExtra("position", position);
+                startActivity(intent);
                 Handler handler=new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -52,7 +47,7 @@ public class SouthCulture extends AppCompatActivity {
                         parent.setAdapter((cultureDataAdapter));
                         listView.setSelection(pos);
                     }
-                }    ,3000);
+                }    ,2000);
 
             }
        });

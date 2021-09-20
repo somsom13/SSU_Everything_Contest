@@ -1,6 +1,7 @@
 package com.example.ssu_everything_contest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.SQLException;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -63,11 +64,11 @@ public class CultureDataAdapter extends BaseAdapter {
         int start=content.indexOf(origTitle);
         int end=start+origTitle.length();
         spannableString.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannableString.setSpan(new RelativeSizeSpan(1.3f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new RelativeSizeSpan(1.7f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         title.setText(spannableString);
 
-
-        image.setImageResource(R.drawable.test5);//img 경우별로 나눠서 넣기!
+        Log.v("checkCulture","setting img : "+setViewImg.idListForCultureData[position]);
+        image.setImageResource(setViewImg.idListForCultureData[position]);//img 경우별로 나눠서 넣기!
 
 
         if (cultureData.get(position).getCheck() == true) { //이미 누른거
