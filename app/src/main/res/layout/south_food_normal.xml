@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="일반적인 식당에서 구이나 음식을 시키면 식사 이외의 음식은 나오지 않는다.
+김치나 물도 별도로 주문하여야 한다.
+고기를 먹을 때도 야채류는 별도로 주문을 하여야 한다." />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="식당에 근무하는 직원을 부를 때 접대원 동무라고 하거나 직접 이름 뒤에 동무를 붙여서 부르는 것이 좋다.
+대부분의 식당에서는 봉사하는 사람들이 가슴에 명찰을 달고 있어서 쉽게 볼 수 있다." />
+</LinearLayout>

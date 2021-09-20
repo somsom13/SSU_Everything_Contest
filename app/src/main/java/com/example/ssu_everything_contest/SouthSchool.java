@@ -21,13 +21,15 @@ public class SouthSchool extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),SouthMain.class);
                 startActivity(intent);
-                finish();
+
             }
         });
 
         toFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),SouthFoodMain.class);
+                startActivity(intent);
 
             }
         });
@@ -37,7 +39,7 @@ public class SouthSchool extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),SouthCulture.class);
                 startActivity(intent);
-                finish();
+
             }
         });
     }

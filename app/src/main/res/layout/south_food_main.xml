@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/publicButton"
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:text="공식 행사 만찬"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="48dp"
+        android:fontFamily="@font/gowunbatang_bold"
+        android:textSize="36px"
+        />
+
+    <Button
+        android:id="@+id/alcoholButton"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="일반 식당"
+        tools:layout_editor_absoluteX="168dp"
+        tools:layout_editor_absoluteY="46dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="@font/gowunbatang_bold"
+        android:textSize="36px"/>
+
+    <Button
+        android:id="@+id/normalButton"
+        android:layout_width="145dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="술을 겸한 식사"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="48dp"
+        android:fontFamily="@font/gowunbatang_bold"
+        android:textSize="36px"/>
+</LinearLayout>

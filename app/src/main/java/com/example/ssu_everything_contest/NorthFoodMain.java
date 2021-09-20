@@ -1,4 +1,13 @@
 package com.example.ssu_everything_contest;
 
-public class NorthFoodMain {
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class NorthFoodMain extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.north_food_main);
+    }
 }

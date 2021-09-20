@@ -25,6 +25,10 @@
         <activity android:name=".SouthSchool" />
         <activity android:name=".SouthCulture"/>
         <activity android:name=".CultureDetail"/>
+        <activity android:name=".SouthFoodMain"/>
+        <activity android:name=".NorthFoodMain"/>
+        <activity android:name=".NorthCultureMain"/>
+
     </application>
 
 </manifest>

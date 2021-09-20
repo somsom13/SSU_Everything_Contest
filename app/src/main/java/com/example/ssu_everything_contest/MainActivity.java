@@ -208,7 +208,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),SouthLoading.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -218,7 +217,6 @@ public class MainActivity extends AppCompatActivity {
                 if(test.getInt("favoriteGage",0)>=100){
                     Intent intent =new Intent(getApplicationContext(),NorthLoading.class);
                     startActivity(intent);
-                    finish();
                 }else{
                     makeDialog();
                 }
@@ -231,7 +229,6 @@ public class MainActivity extends AppCompatActivity {
                 if(test.getInt("favoriteGage",0)>=100){
                     Intent intent =new Intent(getApplicationContext(),NorthFoodMain.class);
                     startActivity(intent);
-                    finish();
                 }else{
                     makeDialog();
                 }
@@ -244,7 +241,6 @@ public class MainActivity extends AppCompatActivity {
                 if(test.getInt("favoriteGage",0)>=100){
                     Intent intent =new Intent(getApplicationContext(),NorthCultureMain.class);
                     startActivity(intent);
-                    finish();
                 }else{
                     makeDialog();
                 }

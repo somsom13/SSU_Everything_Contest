@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="공식적인 식사는 일반적으로 초청 측에서 먼저 대접한다.
+만찬 시에는 우선적으로 자리를 배치한다.
+둥근 테이블의 경우는 직위가 높은 사람이 문 쪽에서 먼 쪽의 자리나 그림 등의 배경이 있는 쪽에 앉으며, 그 다음은 나이를 배려하는 것이 좋다.
+회담 시에는 양쪽이 분리되어 앉지만 식사시에는 서로 어울려 앉는 것이 좋다." />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="만찬의 경우는 음식이 한꺼번에 나오는 것이 아니라 정해진 순서에 따라서 나오므로 식사량을 조절하면서 먹는 것이 좋다.
+음식은 음식을 날라 주는 사람(봉사원, 접대원, 의례원)이 나눠주므로 먹기 싫은 음식은 사양해도 된다.
+굳이 못 먹는 음식이 아니면 조금씩 여러 가지 음식을 먹어보는 것이 좋다.
+두 번째 공식적인 식사는 방문자 쪽에서 주관하는 것이 일반적이다." />
+
+
+</LinearLayout>
