@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences test;
     SharedPreferences.Editor editor;
     private TextView favoriteText;
-    TextView southText,northText;
+    TextView southText,northText,foodText, cultureText;
 
 
     @Override
@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         southText=(TextView) findViewById(R.id.southSoongsilText);
         northText=(TextView) findViewById(R.id.northSoongsilText);
+        foodText=(TextView) findViewById(R.id.foodText);
+        cultureText=(TextView) findViewById(R.id.cultureText);
 
         /**
          * DB연결
@@ -105,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
                     northText.setVisibility(View.GONE);
                 if(southText.getVisibility()==View.VISIBLE)
                     southText.setVisibility(View.GONE);
+                if(foodText.getVisibility()==View.VISIBLE)
+                    foodText.setVisibility(View.GONE);
+                if(cultureText.getVisibility()==View.VISIBLE)
+                    cultureText.setVisibility(View.GONE);
                 /*if(test.getInt("favoriteGage",0)>=100){
                     Intent intent =new Intent(getApplicationContext(),NorthLoading.class);
                     startActivity(intent);
@@ -147,10 +153,52 @@ public class MainActivity extends AppCompatActivity {
                     southText.setVisibility(View.GONE);
                 if(northText.getVisibility()==View.VISIBLE)
                     northText.setVisibility(View.GONE);
+                if(foodText.getVisibility()==View.VISIBLE)
+                    foodText.setVisibility(View.GONE);
+                if(cultureText.getVisibility()==View.VISIBLE)
+                    cultureText.setVisibility(View.GONE);
                 /*southText.setVisibility(View.VISIBLE);
                 Intent intent=new Intent(getApplicationContext(),SouthLoading.class);
                 startActivity(intent);
                 finish();*/
+            }
+        });
+
+        //푸드로 가는 버튼
+        ImageButton foodButton=(ImageButton)findViewById(R.id.foodButton);
+        foodButton.bringToFront();
+        foodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(foodText.getVisibility()==View.GONE)
+                    foodText.setVisibility(View.VISIBLE);
+                else
+                    foodText.setVisibility(View.GONE);
+                if(northText.getVisibility()==View.VISIBLE)
+                    northText.setVisibility(View.GONE);
+                if(southText.getVisibility()==View.VISIBLE)
+                    southText.setVisibility(View.GONE);
+                if(cultureText.getVisibility()==View.VISIBLE)
+                    cultureText.setVisibility(View.GONE);
+            }
+        });
+
+        //문화로 가는 버튼
+        ImageButton cultureButton=(ImageButton)findViewById(R.id.cultureButton);
+        cultureButton.bringToFront();
+        cultureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(cultureText.getVisibility()==View.GONE)
+                    cultureText.setVisibility(View.VISIBLE);
+                else
+                    cultureText.setVisibility(View.GONE);
+                if(northText.getVisibility()==View.VISIBLE)
+                    northText.setVisibility(View.GONE);
+                if(southText.getVisibility()==View.VISIBLE)
+                    southText.setVisibility(View.GONE);
+                if(foodText.getVisibility()==View.VISIBLE)
+                    foodText.setVisibility(View.GONE);
             }
         });
 
@@ -169,6 +217,32 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(test.getInt("favoriteGage",0)>=100){
                     Intent intent =new Intent(getApplicationContext(),NorthLoading.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    makeDialog();
+                }
+            }
+        });
+
+        foodText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(test.getInt("favoriteGage",0)>=100){
+                    Intent intent =new Intent(getApplicationContext(),NorthFoodMain.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    makeDialog();
+                }
+            }
+        });
+
+        cultureText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(test.getInt("favoriteGage",0)>=100){
+                    Intent intent =new Intent(getApplicationContext(),NorthCultureMain.class);
                     startActivity(intent);
                     finish();
                 }else{

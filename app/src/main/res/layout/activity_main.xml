@@ -50,6 +50,33 @@
         app:tint="@color/white"
         tools:ignore="MissingConstraints" />
 
+    <ImageButton
+        android:id="@+id/foodButton"
+        android:layout_width="35dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:background="#00ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.659"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/location_marker"
+        app:tint="@color/white"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/cultureButton"
+        android:layout_width="35dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="160dp"
+        android:background="#00ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/location_marker"
+        app:tint="@color/white"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/northSoongsilText"
@@ -118,5 +145,38 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="265dp" />
+
+    <TextView
+        android:id="@+id/foodText"
+        android:layout_width="130dp"
+        android:layout_height="75dp"
+        android:background="@drawable/main_text_border"
+        android:fontFamily="@font/gowunbatang_regular"
+        android:visibility="gone"
+        android:gravity="center"
+        android:text="백두산도 식후경"
+        android:textSize="40px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/foodButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.057" />
+
+    <TextView
+        android:id="@+id/cultureText"
+        android:layout_width="160dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/main_text_border"
+        android:fontFamily="@font/gowunbatang_regular"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="관광하기"
+        android:textSize="50px"
+        app:layout_constraintStart_toEndOf="@+id/cultureButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
