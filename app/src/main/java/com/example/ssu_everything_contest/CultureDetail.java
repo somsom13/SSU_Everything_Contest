@@ -19,10 +19,10 @@ public class CultureDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.culture_detail);
 
-        TextView title=(TextView)findViewById(R.id.showTitle);
-        ImageView image=(ImageView)findViewById(R.id.showImage);
-        content=(TextView)findViewById(R.id.showContent);
-        Button btn=(Button) findViewById(R.id.culture_ok);
+        TextView title=findViewById(R.id.showTitle);
+        ImageView image=findViewById(R.id.showImage);
+        content=findViewById(R.id.showContent);
+        Button btn=findViewById(R.id.culture_ok);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras(); //Extra들을 가져옴
@@ -52,12 +52,6 @@ public class CultureDetail extends AppCompatActivity {
         finish();
     }
 
-    public static int[] returnResult(){
-        int[] res=new int[2];
-        res[0]=position;
-        res[1]=success;
-        return res;
-    }
 
     private void setContentText(String contentText){
         String myText="";

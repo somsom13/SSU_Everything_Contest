@@ -2,14 +2,12 @@ package com.example.ssu_everything_contest;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -19,16 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import org.w3c.dom.Text;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.ssu_everything_contest.MainActivity.cultureList;
 public class NorthCultureGame extends Fragment {
-    TextView tourText;
-    //LinearLayout middle;
     ImageView middle;
     ImageView northCharImg;
     ImageView southCharImg;
@@ -48,18 +41,15 @@ public class NorthCultureGame extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.north_culture_game, container, false);
 
-        //tourText=(TextView)rootView.findViewById(R.id.tourText);
-        //tourImage=(ImageView)rootView.findViewById(R.id.tour)
-        //middle=(LinearLayout)rootView.findViewById(R.id.middle);
-        middle=(ImageView)rootView.findViewById(R.id.middle);
-        northCharImg=(ImageView)rootView.findViewById(R.id.tourNorthChar);
-        southCharImg=(ImageView)rootView.findViewById(R.id.tourSouthChar);
-        tourQuestion=(TextView)rootView.findViewById(R.id.tourQuestion);
-        tourAnswer=(EditText)rootView.findViewById(R.id.tourAnswer);
-        submit=(Button)rootView.findViewById(R.id.submitTour);
-        ImageButton home= (ImageButton) rootView.findViewById(R.id.homeIconButton);
-        favorite=(TextView)rootView.findViewById(R.id.tour_favorite);
-        tourProgressText=(TextView)rootView.findViewById(R.id.tourprogress);
+        middle= rootView.findViewById(R.id.middle);
+        northCharImg=rootView.findViewById(R.id.tourNorthChar);
+        southCharImg=rootView.findViewById(R.id.tourSouthChar);
+        tourQuestion=rootView.findViewById(R.id.tourQuestion);
+        tourAnswer=rootView.findViewById(R.id.tourAnswer);
+        submit=rootView.findViewById(R.id.submitTour);
+        ImageButton home= rootView.findViewById(R.id.homeIconButton);
+        favorite=rootView.findViewById(R.id.tour_favorite);
+        tourProgressText=rootView.findViewById(R.id.tourprogress);
 
         favorite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,8 +70,6 @@ public class NorthCultureGame extends Fragment {
                 doProgress();
             }
         });
-
-
 
         test = this.getActivity().getSharedPreferences("test", MODE_PRIVATE);
         editor = test.edit();
@@ -106,17 +94,13 @@ public class NorthCultureGame extends Fragment {
                             favorite.setText(String.valueOf(favoriteGage));
                             waitAndProgress();
                         }else{
-                            //tourQuestion.setBackgroundResource(R.drawable.aright1);
-                            //tourQuestion.setText("");
                             isQuestion=-1;
                             tourQuestion.setVisibility(View.INVISIBLE);
                             tourAnswer.setVisibility(View.VISIBLE);
-                            //tourQuestion.setHint("정답을 입력하세요!");
-                            //tourQuestion.setInputType(EditorInfo.TYPE_TEXT_FLAG_MULTI_LINE);
                         }
                         break;
                     default:
-                        //chosenAnswer=0;
+
                 }
             }
         };
@@ -207,7 +191,7 @@ public class NorthCultureGame extends Fragment {
             northCharImg.setImageResource(R.drawable.north_charac_angry);
             southCharImg.setImageResource(R.drawable.south_charac_sad);
             //question.setText("동문서답이네...내 얘기 안듣고 있나?");
-            tourQuestion.setText("정답은 "+realAnswer+" 이야!!");
+            tourQuestion.setText("정답은 "+realAnswer+"(이)야!!");
             return 0;
         }
 

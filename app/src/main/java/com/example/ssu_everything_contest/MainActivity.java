@@ -41,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        southText=(TextView) findViewById(R.id.southSoongsilText);
-        northText=(TextView) findViewById(R.id.northSoongsilText);
-        foodText=(TextView) findViewById(R.id.foodText);
-        cultureText=(TextView) findViewById(R.id.cultureText);
+        southText=findViewById(R.id.southSoongsilText);
+        northText= findViewById(R.id.northSoongsilText);
+        foodText=findViewById(R.id.foodText);
+        cultureText=findViewById(R.id.cultureText);
 
         /**
          * DB연결
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         sendImgRequest("tourData");
 
 
-        favoriteText=(TextView) findViewById(R.id.tour_favorite);
+        favoriteText=findViewById(R.id.tour_favorite);
         test = getSharedPreferences("test", MODE_PRIVATE);
         editor = test.edit();
 
@@ -314,6 +314,10 @@ public class MainActivity extends AppCompatActivity {
                 if(id==9){
                     String[] res=question.split("노동자,");
                     question=res[0]+"노동자,\n"+res[1];
+                }
+                if(name.equals("금수산기념궁전")) {
+                    name = "금수산태양궁전";
+                    title="금수산태양궁전";
                 }
                 cultureList.add(new CultureData(id,name,title,detail,question,answer,check));
             }

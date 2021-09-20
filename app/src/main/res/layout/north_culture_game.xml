@@ -79,29 +79,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="0dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginBottom="0dp"
                 android:layout_weight="1"
                 android:background="@drawable/aright1"
                 android:fontFamily="@font/gowunbatang_bold"
                 android:gravity="center"
+                android:hint="정답을 입력하세요!"
+                android:inputType="text"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:paddingBottom="20dp"
-                android:hint="정답을 입력하세요!"
-                android:textSize="40px"
-                android:inputType="text"/>
+                android:textSize="40px" />
 
             <TextView
                 android:id="@+id/tourQuestion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="0dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginBottom="0dp"
                 android:layout_weight="1"
                 android:background="@drawable/aleft1"
@@ -130,13 +130,16 @@
 
             <Button
                 android:id="@+id/submitTour"
+                style="?android:borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="-20dp"
+                android:layout_gravity="top"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="-30dp"
                 android:layout_weight="1"
-                android:text="NEXT" />
+                android:text="NEXT >"
+                android:textColor="#5a8cca"
+                android:textSize="50px" />
 
             <ImageView
                 android:id="@+id/tourSouthChar"
