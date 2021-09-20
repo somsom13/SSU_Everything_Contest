@@ -11,12 +11,18 @@ public class CultureData {
     String title;
     String content;
     boolean check;
+    String name;
+    String question;
+    String answer;
     //Bitmap bitmap;
 
-    public CultureData(int id,String title, String content,String check) {
+    public CultureData(int id,String name,String title, String content,String question,String answer,String check) {
         this._id=id;
         this.title=title;
         this.content=content;
+        this.question=question;
+        this.answer=answer;
+        this.name=name;
         if(check.equals("O"))
             this.check=true;
         else
@@ -51,6 +57,12 @@ public class CultureData {
     public void setCheck(boolean check) {
         this.check = check;
     }
+
+    public String getName(){return name;}
+    public void setName(String name){this.name=name;}
+
+    public String getQuestion(){return question;}
+    public String getAnswer(){return answer;}
 
     /*public void setImageBitmap(Bitmap bitmap){ this.bitmap=bitmap;}
 

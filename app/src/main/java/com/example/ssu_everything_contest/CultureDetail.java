@@ -28,7 +28,7 @@ public class CultureDetail extends AppCompatActivity {
         Bundle bundle = intent.getExtras(); //Extra들을 가져옴
         int pos = bundle.getInt("position");   //가져온 Extars 중에서 꺼내기
 
-        CultureData newData=SouthCulture.cultureList.get(pos);
+        CultureData newData=MainActivity.cultureList.get(pos);
         title.setText(newData.getCultureTitle());
         //content.setText(newData.getCultureContent());
         setContentText(newData.getCultureContent());

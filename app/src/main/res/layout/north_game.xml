@@ -36,7 +36,7 @@
             app:tint="@color/white" />
 
         <TextView
-            android:id="@+id/fav"
+            android:id="@+id/tour_favorite"
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_marginLeft="115dp"
@@ -66,7 +66,7 @@
 
 
             <TextView
-                android:id="@+id/wordView"
+                android:id="@+id/tourText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -83,7 +83,7 @@
 
 
             <TextView
-                android:id="@+id/northSay"
+                android:id="@+id/tourQuestion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="17dp"
@@ -106,7 +106,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/character1normal"
+                android:id="@+id/tourNorthChar"
                 android:layout_width="130dp"
                 android:layout_height="168dp"
                 android:layout_gravity="bottom"
@@ -131,7 +131,7 @@
                 android:visibility="invisible"/>
 
             <ImageView
-                android:id="@+id/character2normal"
+                android:id="@+id/tourSouthChar"
                 android:layout_width="130dp"
                 android:layout_height="162dp"
                 android:layout_gravity="bottom"

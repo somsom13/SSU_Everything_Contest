@@ -14,10 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+import static com.example.ssu_everything_contest.MainActivity.cultureList;
 import static com.example.ssu_everything_contest.MainActivity.mDb;
 
 public class SouthCulture extends AppCompatActivity {
-    public static ArrayList<CultureData> cultureList=new ArrayList<>();
+    //public static ArrayList<CultureData> cultureList=new ArrayList<>();
 
     public static CultureDataAdapter cultureDataAdapter;
     @Override
@@ -28,7 +29,7 @@ public class SouthCulture extends AppCompatActivity {
         ListView listView=(ListView)findViewById(R.id.southCultureListView);
         cultureDataAdapter=new CultureDataAdapter(this,cultureList);
 
-        updateCultureList();
+        //updateCultureList();
         listView.setAdapter(cultureDataAdapter);
 
        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -57,21 +58,6 @@ public class SouthCulture extends AppCompatActivity {
         //나중에 관광페이지에서, 만약 모든 list의 check값이 true면 접근가능
     }
 
-    private void updateCultureList(){
-        String sql="SELECT * FROM CultureData";
-        Cursor cur = mDb.rawQuery(sql, null);
 
-        if (cur != null) {
-            while (cur.moveToNext()) {
-                int id = cur.getInt(0);
-                //String name = cur.getString(1);
-                String title = cur.getString(2);
-                String detail=cur.getString(3);
-                String check=cur.getString(6);
-                //Log.v("checkWordGame","add new value, id: "+id);
-                cultureList.add(new CultureData(id,title,detail,check));
-            }
-        }
-    }
 
 }

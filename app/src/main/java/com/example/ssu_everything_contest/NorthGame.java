@@ -1,13 +1,10 @@
 package com.example.ssu_everything_contest;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -20,11 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
-import org.w3c.dom.Text;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -52,21 +46,21 @@ public class NorthGame extends Fragment{
 
         ImageButton home= (ImageButton) rootView.findViewById(R.id.homeIconButton);
         progressGage=(TextView) rootView.findViewById(R.id.progress);
-        question=(TextView) rootView.findViewById(R.id.northSay);
+        question=(TextView) rootView.findViewById(R.id.tourQuestion);
         a1=(TextView) rootView.findViewById(R.id.choose1);
         a2=(TextView) rootView.findViewById(R.id.choose2);
         a3=(TextView) rootView.findViewById(R.id.choose3);
         a4=(TextView) rootView.findViewById(R.id.choose4);
-        favorite=(TextView) rootView.findViewById(R.id.fav);
-        wordView=(TextView)rootView.findViewById(R.id.wordView);
+        favorite=(TextView) rootView.findViewById(R.id.tour_favorite);
+        wordView=(TextView)rootView.findViewById(R.id.tourText);
 
         test = this.getActivity().getSharedPreferences("test", MODE_PRIVATE);
         editor = test.edit();
         favoriteGage=test.getInt("favoriteGage",100);
         progressCount=test.getInt("progressCount",0);
 
-        nCharacterNormal=rootView.findViewById(R.id.character1normal);
-        sCharacterNormal=rootView.findViewById(R.id.character2normal);
+        nCharacterNormal=rootView.findViewById(R.id.tourNorthChar);
+        sCharacterNormal=rootView.findViewById(R.id.tourSouthChar);
         nCharacterAngry=rootView.findViewById(R.id.character1angry);
         sCharacterSad= rootView.findViewById(R.id.character2sad);
         nCharacterSmile=rootView.findViewById(R.id.character1smile);
