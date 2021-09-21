@@ -14,7 +14,7 @@
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="40dp"
             android:text=""
            />
 
@@ -24,7 +24,11 @@
             android:layout_height="wrap_content"
             android:text="남한에서는 술잔의 술을 다 마셔야 술을 다시 따라주는 것이 보통이지만 북한에서는 술잔에 술이 있어도 첨잔의 형태로 술을 먹으며 남한의 경우처럼 한 자리에서 여러 종류의 술을 먹지않는다. 또한 일반적으로 술잔을 돌리지 않는다."
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="209dp" />
+            tools:layout_editor_absoluteY="209dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="50px"
+            android:fontFamily="@font/gowunbatang_regular"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/textView2"
@@ -32,6 +36,9 @@
             android:layout_height="wrap_content"
             android:text="남한의 경우 식당에 술을 가지고 들어가면 매상을 고려하여, 좋아하지 않는 경우가 많다.
 그러나 북한의 식당에서는 그렇지 않으며 술을 가지고 가면 오히려 잔이나 얼음 등을 준비해준다."
+            android:textSize="50px"
+            android:fontFamily="@font/gowunbatang_regular"
+            android:textColor="@color/black"/>
          />
     </LinearLayout>
 

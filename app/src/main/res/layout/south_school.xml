@@ -1,51 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/board"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    >
 
     <TextView
         android:id="@+id/schoolName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top|center_horizontal"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/gowunbatang_bold"
         android:gravity="center"
         android:text="TextView"
-        android:textSize="50px" />
+        android:textColor="@color/white"
+        android:textSize="70px" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="60dp">
 
         <Button
             android:id="@+id/button"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:background="@drawable/school_button"
-            android:text="단어 퀴즈" />
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:textColor="@color/white"
+            android:text="1교시 단어 퀴즈"
+            android:textSize="60px"
+            android:fontFamily="@font/gowunbatang_regular"
+            android:background="@drawable/school_subject_button"/>
 
         <Button
             android:id="@+id/button2"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:background="@drawable/school_button"
-            android:text="식사 예절" />
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:text="2교시 식사 예절"
+            android:textSize="60px"
+            android:fontFamily="@font/gowunbatang_regular"
+            android:background="@drawable/school_subject_button"/>
 
         <Button
             android:id="@+id/button3"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
-            android:background="@drawable/school_button"
-            android:text="문화 공부" />
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:text="3교시 문화 공부"
+            android:textSize="60px"
+            android:fontFamily="@font/gowunbatang_regular"
+            android:background="@drawable/school_subject_button"/>
+
     </LinearLayout>
+
 
 </LinearLayout>
