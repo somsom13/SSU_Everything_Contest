@@ -59,9 +59,12 @@ public class MainActivity extends AppCompatActivity {
         mDBHelper.close();
         mDb=mDBHelper.getReadableDatabase();
 
-        insertDataToGame();
-        insertDataToDictionary();
-        insertDataToCulture();
+        if(wordGameListList.size()==0)
+            insertDataToGame();
+        if(nsWordList.size()==0)
+            insertDataToDictionary();
+        if(cultureList.size()==0)
+            insertDataToCulture();
         sendImgRequest("cultureData");
         //sendImgRequest("foodData");
         sendImgRequest("tourData");
@@ -301,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
                 String answer=cur.getString(5);
                 String check=cur.getString(6);
                 //Log.v("checkWordGame","add new value, id: "+id);
-                if(id==2){
+                /*if(id==2){
                     String[] res=question.split("평양");
                     question=res[0]+"\n평양 "+res[1];
                 }
@@ -314,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
                 if(id==9){
                     String[] res=question.split("노동자,");
                     question=res[0]+"노동자,\n"+res[1];
-                }
+                }*/
                 if(name.equals("금수산기념궁전")) {
                     name = "금수산태양궁전";
                     title="금수산태양궁전";

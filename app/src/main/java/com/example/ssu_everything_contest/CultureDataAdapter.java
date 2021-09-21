@@ -67,7 +67,7 @@ public class CultureDataAdapter extends BaseAdapter {
         spannableString.setSpan(new RelativeSizeSpan(1.7f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         title.setText(spannableString);
 
-        //Log.v("checkCulture","setting img : "+setViewImg.idListForCultureData[position]);
+        Log.v("checkCulture","getView position : "+position);
         if(position<=9)
             image.setImageResource(setViewImg.idListForCultureData[position]);//img 경우별로 나눠서 넣기!
 

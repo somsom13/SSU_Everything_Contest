@@ -95,7 +95,7 @@ public class NorthCultureGame extends Fragment {
                             waitAndProgress();
                         }else{
                             isQuestion=-1;
-                            tourQuestion.setVisibility(View.INVISIBLE);
+                            //////tourQuestion.setVisibility(View.INVISIBLE);
                             tourAnswer.setVisibility(View.VISIBLE);
                         }
                         break;
@@ -128,9 +128,8 @@ public class NorthCultureGame extends Fragment {
 
         }
 
-        //tourText.setVisibility(View.INVISIBLE);
         else {
-            tourQuestion.setVisibility(View.VISIBLE);
+            //tourQuestion.setVisibility(View.VISIBLE);
             tourAnswer.setVisibility(View.INVISIBLE);
             tourProgressText.setText((tourProgress + 1) + "/10");
             favorite.setText(String.valueOf(favoriteGage));
@@ -151,6 +150,7 @@ public class NorthCultureGame extends Fragment {
     private void setViewQuestion(String question, int id,String name){
         submit.setVisibility(View.INVISIBLE);
         tourAnswer.setVisibility(View.INVISIBLE);
+        submit.bringToFront();
         middle.setImageResource(setViewImg.idListForTourData[id-1]);
         northCharImg.setImageResource(R.drawable.north_charac_normal);
         southCharImg.setImageResource(R.drawable.south_charac_normal);
@@ -172,10 +172,10 @@ public class NorthCultureGame extends Fragment {
     }
 
     private int checkAnswer(String answer){
-        submit.setVisibility(View.INVISIBLE);
+        //submit.setVisibility(View.INVISIBLE);
         //tourQuestion.setBackgroundResource(R.drawable.aleft1);
-        tourQuestion.setVisibility(View.VISIBLE);
-        tourAnswer.setVisibility(View.INVISIBLE);
+        ////tourQuestion.setVisibility(View.VISIBLE);
+        ////tourAnswer.setVisibility(View.INVISIBLE);
         if(answer.equals(realAnswer)||answer.equals("16번")) {
             Log.v("checkGame", "correct answer!, favoriteGage: "+(favoriteGage+=3));
             //dialog 표시, 호감도 up
@@ -206,6 +206,8 @@ public class NorthCultureGame extends Fragment {
             @Override
             public void run() {
                 //tourQuestion.setBackgroundResource(R.drawable.aleft1);
+                tourAnswer.setVisibility(View.INVISIBLE);
+                submit.setVisibility(View.INVISIBLE);
                 doProgress();
             }
         }    ,2000);
