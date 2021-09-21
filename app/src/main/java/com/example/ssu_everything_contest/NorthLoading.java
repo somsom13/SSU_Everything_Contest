@@ -25,6 +25,7 @@ public class NorthLoading extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent(NorthLoading.this, NorthMain.class);
+                intent.putExtra("from","loading");
                 startActivity(intent);
                 finish();
             }

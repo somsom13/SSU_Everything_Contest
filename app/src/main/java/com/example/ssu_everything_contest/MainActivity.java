@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -96,17 +97,28 @@ public class MainActivity extends AppCompatActivity {
         }
         editor.commit(); //완료한다.
 
-        //favoriteGage=test.getInt("favoriteGage",100);
         favoriteGage=test.getInt("favoriteGage",100);
-        //Log.v("favoriteGage","get favorite gage in main oncreate");
         favoriteText.setText(String.valueOf(favoriteGage));
-        //Log.v("checkFavorite","from main activity, get favoriteGage: "+favoriteGage);
         userName=test.getString("userName","none");
-        //Log.v("checkUserName",test.getString("userName",userName));
 
-        /*int heartCount=test.getInt("heartCount",0);
-        if(heartCount==1)
-            heart1.setBackgroundResource(R.drawable.heart_empty);*/
+        int heartCount=test.getInt("heartCount",0);
+        setHeartCount(heartCount);
+
+        heart3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editor.putInt("heartCount",3);
+                editor.apply();
+                setHeartCount(test.getInt("heartCount",0));
+            }
+        });
+
+        Log.v("checkHeart","get heart count: "+test.getInt("heartCount",0));
+
+        /*if(test.getInt("heartCount",0)==3){
+            NorthSuccess northSuccess=new NorthSuccess();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, northSuccess).commit();
+        }*/
 
 
 
@@ -392,6 +404,37 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle("").setMessage("평양숭실에 다니는 친구와 친해지세요!\n 북한의 컨텐트 3개를 모두 통과하여 좌측상단의 하트 게이지를 채워주세요!");
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    private void setHeartCount(int count){
+        Log.v("checkHeart","enter setHeartCount, count: "+count);
+        switch(count){
+            case 3:
+                heart3.setBackgroundResource(R.drawable.heart_empty);
+            case 2:
+                heart2.setBackgroundResource(R.drawable.heart_empty);
+            case 1:
+                heart1.setBackgroundResource(R.drawable.heart_empty);
+                break;
+            default:
+
+        }
+
+        if(count==3){
+            Handler handler=new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent successIntent=new Intent(MainActivity.this,NorthMain.class);
+                    successIntent.putExtra("from","Main");
+                    startActivity(successIntent);
+                    finish();
+                    /*NorthSuccess northSuccess=new NorthSuccess();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, northSuccess).commit();*/
+                }
+            }    ,2000);
+        }
+        return;
     }
 
 

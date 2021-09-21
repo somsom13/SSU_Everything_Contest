@@ -110,6 +110,26 @@ public class NorthGame extends Fragment {
             }
         };
 
+        favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressCount=48;
+                editor.putInt("progressCount",progressCount);
+                editor.apply();
+                doProgress();
+            }
+        });
+
+        progressGage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressCount=0;
+                editor.putInt("progressCount",0);
+                editor.apply();
+                doProgress();
+            }
+        });
+
         a1.setOnClickListener(answerClick);
         a2.setOnClickListener(answerClick);
         a3.setOnClickListener(answerClick);
@@ -125,12 +145,20 @@ public class NorthGame extends Fragment {
 
     private void doProgress() {
         if (progressCount == 50) {
+            applyPreference();
             Log.v("checkGame", "end of game list, go to NorthSuccess");
-            Toast.makeText(getContext().getApplicationContext(),"gameend",Toast.LENGTH_LONG).show();
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            NorthSuccess fragment2 = new NorthSuccess();
-            transaction.replace(R.id.container, fragment2);
-            transaction.commit();
+            Toast.makeText(getContext(),"단어 게임을 성공적으로 끝냈습니다!",Toast.LENGTH_LONG).show();
+            //FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            //NorthSuccess fragment2 = new NorthSuccess();
+            //transaction.replace(R.id.container, fragment2);
+            //transaction.commit();
+
+            editor.putInt("heartCount",test.getInt("heartCount",0)+1);
+            editor.putInt("progressCount",100);
+            editor.apply();
+            Intent intent=new Intent(getActivity(),MainActivity.class);
+            startActivity(intent);
+            getActivity().finish();
         }
 
         wordView.setVisibility(View.INVISIBLE);
@@ -186,12 +214,6 @@ public class NorthGame extends Fragment {
         a4.setText(an4);
         favorite.setText(String.valueOf(favNum));
         return;
-    }
-
-    private void sendDataToActivity(int res) {
-        Intent intent = new Intent(getActivity(), NorthMain.class);
-        intent.putExtra("quizResult", res);//1:ok, 0:wrong
-        startActivity(intent);
     }
 
     private void applyPreference() {

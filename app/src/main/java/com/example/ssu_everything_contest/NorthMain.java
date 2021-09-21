@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,16 +26,30 @@ public class NorthMain extends AppCompatActivity {
         northFail=new NorthFail();
         northSuccess=new NorthSuccess();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,northGame).commit();
+        Intent getintent=getIntent();
+        String from=getintent.getExtras().getString("from");
+        if(from.equals("Main")){
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, northSuccess).commit();
+        }else {
 
-        makeDialog();
+
+            int wordGameProgress = MainActivity.test.getInt("progressCount", 0);
+            if (wordGameProgress == 100) {
+                makeDialog(0);
+                Intent intent = new Intent(NorthMain.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, northGame).commit();
+                makeDialog(1);
+            }
+        }
+
+
         
-        //무사히 끝나면, 성공화면!
-        //만약 중간에 호감도가 50보다 떨어진다면, 실패화면
 
-
-        //실패로 가는 버튼
         Button goSouth=(Button)findViewById(R.id.failButton);
+        goSouth.setVisibility(View.GONE);
         goSouth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,6 +59,7 @@ public class NorthMain extends AppCompatActivity {
 
         //성공으로 가는 버튼
         Button goNorth=(Button)findViewById(R.id.successButton);
+        goNorth.setVisibility(View.GONE);
         goNorth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,11 +77,15 @@ public class NorthMain extends AppCompatActivity {
         finish();
     }
 
-    private void makeDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("").setMessage("맞추면 +2점, 틀리면 -3점이 됩니다. 호감도가 100 아래로 떨어지지 않게 주의하세요!");
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+    private void makeDialog(int request) {
+        if (request == 1) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("").setMessage("단어 퀴즈를 풀어주세요!\n맞으면 +2점, 틀리면 -3점 입니다.\n호감도가 100아래로 내려가지 않게 주의하세요!");
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        } else {
+            Toast.makeText(this, "이미 단어 퀴즈를 완료하셨습니다!\n", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

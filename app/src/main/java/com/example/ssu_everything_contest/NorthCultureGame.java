@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 
 import static android.content.Context.MODE_PRIVATE;
@@ -36,6 +37,7 @@ public class NorthCultureGame extends Fragment {
     private int tourProgress;
     private String realAnswer;
     private int isQuestion=0;
+    private int wrongCount;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,6 +77,13 @@ public class NorthCultureGame extends Fragment {
         editor = test.edit();
         favoriteGage=test.getInt("favoriteGage",100);
         tourProgress=test.getInt("tourProgress",0);
+        if(!MainActivity.test.contains("tourWrongCount")){
+            MainActivity.editor.putInt("tourWrongCount",0);
+            editor.commit();
+        }
+
+        wrongCount=MainActivity.test.getInt("tourWrongCount",0);
+
 
         View.OnClickListener onClickListener=new View.OnClickListener(){
             //int res;
@@ -92,6 +101,7 @@ public class NorthCultureGame extends Fragment {
                             int res = checkAnswer(answer);
                             tourProgress++;
                             favorite.setText(String.valueOf(favoriteGage));
+                            submit.setVisibility(View.INVISIBLE);
                             waitAndProgress();
                         }else{
                             isQuestion=-1;
@@ -115,18 +125,26 @@ public class NorthCultureGame extends Fragment {
     }
 
     private void doProgress(){
+        applyPreference();
         if(tourProgress==10){
             Log.v("checkGame","end of game list, go to NorthSuccess");
-            editor.putInt("tourProgress",0);
+            editor.putInt("tourProgress",100);
             editor.putInt("heartCount",test.getInt("heartCount",0)+1);
             editor.apply();
             Intent intent=new Intent(getActivity(),MainActivity.class);
             Toast.makeText(getContext(),"관광지 퀴즈를 성공적으로 끝냈습니다!",Toast.LENGTH_LONG).show();
-            //FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-            //fragmentManager.beginTransaction().remove(NorthCultureGame.this).commit();
             startActivity(intent);
             getActivity().finish();
 
+        }else if(MainActivity.test.getInt("tourWrongCount",0)>=5){
+            Log.v("checkGame","tour wrong count: "+wrongCount);
+            Toast.makeText(getContext(),"관광지 퀴즈를 5문제 이상 틀리셨습니다! 다시 도전해주세요.",Toast.LENGTH_SHORT).show();
+            MainActivity.editor.putInt("tourWrongCount",0);
+            MainActivity.editor.putInt("tourProgress",0);
+            MainActivity.editor.apply();
+            Intent intent=new Intent(getActivity(),MainActivity.class);
+            startActivity(intent);
+            getActivity().finish();
         }
 
         else {
@@ -139,7 +157,7 @@ public class NorthCultureGame extends Fragment {
             realAnswer = cd.answer;
             setViewQuestion(cd.question, cd._id, cd.name);
 
-            applyPreference();
+
         }
     }
 
@@ -174,21 +192,20 @@ public class NorthCultureGame extends Fragment {
     }
 
     private int checkAnswer(String answer){
-        //submit.setVisibility(View.INVISIBLE);
-        //tourQuestion.setBackgroundResource(R.drawable.aleft1);
-        ////tourQuestion.setVisibility(View.VISIBLE);
-        ////tourAnswer.setVisibility(View.INVISIBLE);
         if(answer.equals(realAnswer)||answer.equals("16번")) {
-            Log.v("checkGame", "correct answer!, favoriteGage: "+(favoriteGage+=3));
-            //dialog 표시, 호감도 up
-            //sendDialog("correct");
+            favoriteGage+=3;
             northCharImg.setImageResource(R.drawable.north_charac_smile);
             southCharImg.setImageResource(R.drawable.south_charac_smile);
             Toast.makeText(getActivity(),"+3p",Toast.LENGTH_SHORT).show();
             tourQuestion.setText("잘 알고 있네~!");
             return 1;
         }else{
-            Log.v("checkGame","wrong answer! favoriteGage: "+(favoriteGage-=2));
+            //Log.v("checkGame","wrong answer! favoriteGage: "+(favoriteGage-=2));
+            favoriteGage-=2;
+            wrongCount+=1;
+            MainActivity.editor.putInt("tourWrongCount",wrongCount);
+            MainActivity.editor.apply();
+            Log.v("checkGame","wrong count: "+MainActivity.test.getInt("tourWrongCount",0));
             Toast.makeText(getActivity(),"-2p",Toast.LENGTH_SHORT).show();
             northCharImg.setImageResource(R.drawable.north_charac_angry);
             southCharImg.setImageResource(R.drawable.south_charac_sad);
@@ -209,7 +226,7 @@ public class NorthCultureGame extends Fragment {
             public void run() {
                 //tourQuestion.setBackgroundResource(R.drawable.aleft1);
                 tourAnswer.setVisibility(View.INVISIBLE);
-                submit.setVisibility(View.INVISIBLE);
+                //submit.setVisibility(View.INVISIBLE);
                 doProgress();
             }
         }    ,2000);
