@@ -142,12 +142,12 @@
 
     <TextView
         android:id="@+id/northSoongsilText"
-        android:layout_width="160dp"
+        android:layout_width="220dp"
         android:layout_height="75dp"
         android:background="@drawable/main_text_border"
         android:fontFamily="@font/gowunbatang_regular"
         android:gravity="center"
-        android:text="평양숭실"
+        android:text="평양숭실 동기와의 대화"
         android:textSize="45px"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"

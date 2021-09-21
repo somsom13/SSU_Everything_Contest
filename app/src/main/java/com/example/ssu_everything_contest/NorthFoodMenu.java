@@ -35,7 +35,7 @@ public class NorthFoodMenu extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
-                ((NorthFoodMain)getActivity()).replaceFragment(NorthFoodGame.newInstance());
+                ((NorthFoodMain)getActivity()).replaceFragment(NorthFoodGame.newInstance(foods.get(position).getFoodImage()));
             }
         });
         return rootView;
