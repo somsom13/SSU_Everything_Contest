@@ -88,7 +88,7 @@ public class NorthCultureGame extends Fragment {
                     case R.id.submitTour:
                         if(isQuestion==-1) {
                             String answer = String.valueOf(tourAnswer.getText());
-                            tourAnswer.setText("");
+                            //tourAnswer.setText("");
                             int res = checkAnswer(answer);
                             tourProgress++;
                             favorite.setText(String.valueOf(favoriteGage));
@@ -131,6 +131,7 @@ public class NorthCultureGame extends Fragment {
         else {
             //tourQuestion.setVisibility(View.VISIBLE);
             tourAnswer.setVisibility(View.INVISIBLE);
+            tourAnswer.setText("");
             tourProgressText.setText((tourProgress + 1) + "/10");
             favorite.setText(String.valueOf(favoriteGage));
             CultureData cd = cultureList.get(tourProgress);

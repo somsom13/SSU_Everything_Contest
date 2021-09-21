@@ -67,7 +67,7 @@ public class CultureDataAdapter extends BaseAdapter {
         spannableString.setSpan(new RelativeSizeSpan(1.7f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
         title.setText(spannableString);
 
-        Log.v("checkCulture","getView position : "+position);
+        //Log.v("checkCulture","getView position : "+position);
         if(position<=9)
             image.setImageResource(setViewImg.idListForCultureData[position]);//img 경우별로 나눠서 넣기!
 
@@ -80,11 +80,13 @@ public class CultureDataAdapter extends BaseAdapter {
         return view;
     }
 
-    public void changeStatus(int position) {
+    public int changeStatus(int position) {
         //상세페이지에서 완료를 누르고 나왔을 때만 changeStatus가 실행되게 코드 작성
+        int res=0;
         CultureData temp=cultureData.get(position);
         int id=temp.getID();
         if(temp.getCheck()==false) {
+            res=1;
             temp.setCheck(true);
            String sql="UPDATE CultureData SET _CHECK='O' WHERE _ID="+id;
             try{
@@ -95,6 +97,6 @@ public class CultureDataAdapter extends BaseAdapter {
         }
 
         cultureData.set(position,temp);
-        return;
+        return res;
     }
 }

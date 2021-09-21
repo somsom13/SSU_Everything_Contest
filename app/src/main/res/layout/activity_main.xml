@@ -8,19 +8,90 @@
     tools:context=".MainActivity">
 
 
-    <TextView
-        android:id="@+id/tour_favorite"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="25dp"
-        android:background="@drawable/favorite_heart"
-        android:fontFamily="@font/gowunbatang_bold"
-        android:gravity="center"
-        android:text="favorite"
-        android:textColor="@color/white"
-        tools:ignore="MissingConstraints"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="0dp"
+                android:fontFamily="@font/gowunbatang_bold"
+                android:gravity="center"
+                android:text="호감도: "
+                android:textColor="@color/black"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/tour_favorite"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="0dp"
+                android:fontFamily="@font/gowunbatang_bold"
+                android:gravity="center"
+                android:textColor="#5a8cca"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/heart1"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/favorite_heart"
+                android:fontFamily="@font/gowunbatang_bold"
+                android:gravity="center"
+                android:text="favorite"
+                android:textColor="@color/white"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/heart2"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="4dp"
+                android:background="@drawable/favorite_heart"
+                android:fontFamily="@font/gowunbatang_bold"
+                android:gravity="center"
+                android:text="favorite"
+                android:textColor="@color/white"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/heart3"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginRight="0dp"
+                android:background="@drawable/favorite_heart"
+                android:fontFamily="@font/gowunbatang_bold"
+                android:gravity="center"
+                android:text="favorite"
+                android:textColor="@color/white"
+                tools:ignore="MissingConstraints" />
+
+
+        </LinearLayout>
+    </LinearLayout>
 
     <ImageButton
         android:id="@+id/northButton"
@@ -148,18 +219,17 @@
 
     <TextView
         android:id="@+id/foodText"
-        android:layout_width="130dp"
+        android:layout_width="200dp"
         android:layout_height="75dp"
-        android:background="@drawable/main_text_border"
+        android:background="@drawable/main_text_left"
         android:fontFamily="@font/gowunbatang_regular"
-        android:visibility="gone"
         android:gravity="center"
         android:text="백두산도 식후경"
-        android:textSize="40px"
+        android:textSize="50px"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/foodButton"
+        app:layout_constraintEnd_toStartOf="@+id/foodButton"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.057" />
 

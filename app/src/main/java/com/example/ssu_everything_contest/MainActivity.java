@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.OnLifecycleEvent;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -12,8 +13,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,10 +33,11 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<CultureData> cultureList=new ArrayList<>();//문화 리스트
     private int favoriteGage;
     private int setImg=0;
-    SharedPreferences test;
-    SharedPreferences.Editor editor;
+    public static SharedPreferences test;
+    public static SharedPreferences.Editor editor;
     private TextView favoriteText;
     TextView southText,northText,foodText, cultureText;
+    private String userName;
 
 
     @Override
@@ -80,6 +84,15 @@ public class MainActivity extends AppCompatActivity {
             editor.putInt("progressCount",0);
         if(!test.contains("tourProgress"))
             editor.putInt("tourProgress",0);
+        if(!test.contains("userName")) {
+            userName=makeDialogForName();
+            makeDialogForIntro();
+            //editor.putString("userName",userName);
+        }
+        if(!test.contains("heartCount")){
+            editor.putInt("heartCount",0);
+        }
+
         editor.commit(); //완료한다.
 
         //favoriteGage=test.getInt("favoriteGage",100);
@@ -87,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
         Log.v("favoriteGage","get favorite gage in main oncreate");
         favoriteText.setText(String.valueOf(favoriteGage));
         Log.v("checkFavorite","from main activity, get favoriteGage: "+favoriteGage);
+        userName=test.getString("userName","none");
+        Log.v("checkUserName",test.getString("userName",userName));
 
 
         //북쪽 로딩으로 가는 버튼
@@ -303,21 +318,10 @@ public class MainActivity extends AppCompatActivity {
                 String question=cur.getString(4);
                 String answer=cur.getString(5);
                 String check=cur.getString(6);
-                //Log.v("checkWordGame","add new value, id: "+id);
-                /*if(id==2){
-                    String[] res=question.split("평양");
-                    question=res[0]+"\n평양 "+res[1];
-                }
+
                 if(id==4)
                     question="만수대는 평양시에 위치한 OO지대야.";
-                if(id==8){
-                    String[] res=question.split("생전");
-                    question=res[0]+"\n생전 "+res[1];
-                }
-                if(id==9){
-                    String[] res=question.split("노동자,");
-                    question=res[0]+"노동자,\n"+res[1];
-                }*/
+
                 if(name.equals("금수산기념궁전")) {
                     name = "금수산태양궁전";
                     title="금수산태양궁전";
@@ -355,6 +359,33 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("num", 10);    //값 전달
         startActivity(intent);
         //finish();
+    }
+
+    private String makeDialogForName(){
+        final EditText editText=new EditText(MainActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("사용할 이름을 입력해주세요!");
+        builder.setView(editText);
+        builder.setIcon(R.drawable.south_charac_smile);
+        builder.setPositiveButton("입력", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                userName=editText.getText().toString();
+                editor.putString("userName",userName);
+                editor.commit();
+                Toast.makeText(getApplicationContext(),"잘 부탁해, "+userName+"!",Toast.LENGTH_LONG).show();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        return userName;
+    }
+
+    private void makeDialogForIntro(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("").setMessage("평양숭실에 다니는 친구와 친해지세요!\n 북한의 컨텐트 3개를 모두 통과하여 좌측상단의 하트 게이지를 채워주세요!");
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
 
