@@ -58,11 +58,8 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginRight="4dp"
-                android:background="@drawable/favorite_heart"
-                android:fontFamily="@font/gowunbatang_bold"
+                android:background="@drawable/heart_full"
                 android:gravity="center"
-                android:text="favorite"
-                android:textColor="@color/white"
                 tools:ignore="MissingConstraints" />
 
             <TextView
@@ -70,11 +67,8 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginRight="4dp"
-                android:background="@drawable/favorite_heart"
-                android:fontFamily="@font/gowunbatang_bold"
+                android:background="@drawable/heart_full"
                 android:gravity="center"
-                android:text="favorite"
-                android:textColor="@color/white"
                 tools:ignore="MissingConstraints" />
 
             <TextView
@@ -82,11 +76,8 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginRight="0dp"
-                android:background="@drawable/favorite_heart"
-                android:fontFamily="@font/gowunbatang_bold"
+                android:background="@drawable/heart_full"
                 android:gravity="center"
-                android:text="favorite"
-                android:textColor="@color/white"
                 tools:ignore="MissingConstraints" />
 
 

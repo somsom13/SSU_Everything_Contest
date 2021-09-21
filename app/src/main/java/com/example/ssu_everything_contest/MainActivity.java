@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private int setImg=0;
     public static SharedPreferences test;
     public static SharedPreferences.Editor editor;
-    private TextView favoriteText;
+    private TextView favoriteText,heart1,heart2,heart3;
     TextView southText,northText,foodText, cultureText;
     private String userName;
 
@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         northText= findViewById(R.id.northSoongsilText);
         foodText=findViewById(R.id.foodText);
         cultureText=findViewById(R.id.cultureText);
+        heart1=findViewById(R.id.heart1);
+        heart2=findViewById(R.id.heart2);
+        heart3=findViewById(R.id.heart3);
 
         /**
          * DB연결
@@ -87,21 +90,24 @@ public class MainActivity extends AppCompatActivity {
         if(!test.contains("userName")) {
             userName=makeDialogForName();
             makeDialogForIntro();
-            //editor.putString("userName",userName);
         }
         if(!test.contains("heartCount")){
             editor.putInt("heartCount",0);
         }
-
         editor.commit(); //완료한다.
 
         //favoriteGage=test.getInt("favoriteGage",100);
         favoriteGage=test.getInt("favoriteGage",100);
-        Log.v("favoriteGage","get favorite gage in main oncreate");
+        //Log.v("favoriteGage","get favorite gage in main oncreate");
         favoriteText.setText(String.valueOf(favoriteGage));
-        Log.v("checkFavorite","from main activity, get favoriteGage: "+favoriteGage);
+        //Log.v("checkFavorite","from main activity, get favoriteGage: "+favoriteGage);
         userName=test.getString("userName","none");
-        Log.v("checkUserName",test.getString("userName",userName));
+        //Log.v("checkUserName",test.getString("userName",userName));
+
+        /*int heartCount=test.getInt("heartCount",0);
+        if(heartCount==1)
+            heart1.setBackgroundResource(R.drawable.heart_empty);*/
+
 
 
         //북쪽 로딩으로 가는 버튼

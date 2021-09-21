@@ -118,7 +118,8 @@ public class NorthCultureGame extends Fragment {
         if(tourProgress==10){
             Log.v("checkGame","end of game list, go to NorthSuccess");
             editor.putInt("tourProgress",0);
-            editor.commit();
+            editor.putInt("heartCount",test.getInt("heartCount",0)+1);
+            editor.apply();
             Intent intent=new Intent(getActivity(),MainActivity.class);
             Toast.makeText(getContext(),"관광지 퀴즈를 성공적으로 끝냈습니다!",Toast.LENGTH_LONG).show();
             //FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
