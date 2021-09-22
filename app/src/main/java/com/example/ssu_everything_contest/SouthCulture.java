@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import static com.example.ssu_everything_contest.MainActivity.cultureList;
 import static com.example.ssu_everything_contest.MainActivity.mDb;
@@ -23,6 +24,7 @@ public class SouthCulture extends AppCompatActivity {
     //public static ArrayList<CultureData> cultureList=new ArrayList<>();
     private int favoriteGage;
     private int addedScore=0;
+    public static int[] cultureLid;
 
     public static CultureDataAdapter cultureDataAdapter;
     @Override
@@ -34,6 +36,13 @@ public class SouthCulture extends AppCompatActivity {
         ListView listView=(ListView)findViewById(R.id.southCultureListView);
         cultureDataAdapter=new CultureDataAdapter(this,cultureList);
         favoriteGage=MainActivity.test.getInt("favoriteGage",0);
+
+        String savedString = MainActivity.test.getString("cultureData", "");
+        StringTokenizer st = new StringTokenizer(savedString, ",");
+        cultureLid = new int[10];
+        for (int i = 0; i < 10; i++) {
+            cultureLid[i] = Integer.parseInt(st.nextToken());
+        }
 
         //updateCultureList();
         listView.setAdapter(cultureDataAdapter);

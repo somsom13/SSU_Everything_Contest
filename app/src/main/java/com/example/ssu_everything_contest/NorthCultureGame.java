@@ -20,6 +20,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
+import java.util.Set;
+import java.util.StringTokenizer;
+
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.ssu_everything_contest.MainActivity.cultureList;
 public class NorthCultureGame extends Fragment {
@@ -38,6 +41,7 @@ public class NorthCultureGame extends Fragment {
     private String realAnswer;
     private int isQuestion=0;
     private int wrongCount;
+    private int[] tourLid;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,6 +56,13 @@ public class NorthCultureGame extends Fragment {
         ImageButton home= rootView.findViewById(R.id.homeIconButton);
         favorite=rootView.findViewById(R.id.tour_favorite);
         tourProgressText=rootView.findViewById(R.id.tourprogress);
+
+        String savedString = MainActivity.test.getString("tourData", "");
+        StringTokenizer st = new StringTokenizer(savedString, ",");
+        tourLid = new int[10];
+        for (int i = 0; i < 10; i++) {
+            tourLid[i] = Integer.parseInt(st.nextToken());
+        }
 
         favorite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +148,7 @@ public class NorthCultureGame extends Fragment {
             editor.putInt("tourProgress",0);
             editor.putInt("tourEnd",1);
             editor.apply();
+            Log.v("checkHeart","tour game win, heart: "+MainActivity.test.getInt("heartCount",1)+"tour end: "+MainActivity.test.getInt("tourEnd",0));
             Intent intent=new Intent(getActivity(),MainActivity.class);
             Toast.makeText(getContext(),"관광지 퀴즈를 성공적으로 끝냈습니다!",Toast.LENGTH_LONG).show();
             startActivity(intent);
@@ -177,7 +189,8 @@ public class NorthCultureGame extends Fragment {
         submit.setVisibility(View.INVISIBLE);
         tourAnswer.setVisibility(View.INVISIBLE);
         submit.bringToFront();
-        middle.setImageResource(setViewImg.idListForTourData[id-1]);
+
+        middle.setImageResource(tourLid[id-1]);
         northCharImg.setImageResource(R.drawable.north_charac_normal);
         southCharImg.setImageResource(R.drawable.south_charac_normal);
         //Log.v("checkCulture","middle background: "+setViewImg.idListForTourData[id-1]);

@@ -77,9 +77,7 @@ public class MainActivity extends AppCompatActivity {
             insertDataToDictionary();
         if(cultureList.size()==0)
             insertDataToCulture();
-        //sendImgRequest("cultureData");
-        //sendImgRequest("foodData");
-        //sendImgRequest("tourData");
+
 
 
         favoriteText=findViewById(R.id.tour_favorite);
@@ -110,21 +108,8 @@ public class MainActivity extends AppCompatActivity {
         int heartCount=test.getInt("heartCount",0);
         setHeartCount(heartCount);
 
-        heart3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editor.putInt("heartCount",3);
-                editor.apply();
-                setHeartCount(test.getInt("heartCount",0));
-            }
-        });
 
         Log.v("checkHeart","get heart count: "+test.getInt("heartCount",0));
-
-        /*if(test.getInt("heartCount",0)==3){
-            NorthSuccess northSuccess=new NorthSuccess();
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, northSuccess).commit();
-        }*/
 
         if(favoriteGage>=100) { layout.setBackgroundResource(R.drawable.first_page_image); }
         else {layout.setBackgroundResource(R.drawable.division); }
@@ -136,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //favoriteGage 따라 전환 설정
+                northText.bringToFront();
                 if(northText.getVisibility()==View.GONE)
                     northText.setVisibility(View.VISIBLE);
                 else
@@ -146,13 +132,6 @@ public class MainActivity extends AppCompatActivity {
                     foodText.setVisibility(View.GONE);
                 if(cultureText.getVisibility()==View.VISIBLE)
                     cultureText.setVisibility(View.GONE);
-                /*if(test.getInt("favoriteGage",0)>=100){
-                    Intent intent =new Intent(getApplicationContext(),NorthLoading.class);
-                    startActivity(intent);
-                    finish();
-                }else{
-                    makeDialog();
-                }*/
 
             }
         });
@@ -163,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         goSouth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                southText.bringToFront();
                 if(southText.getVisibility()==View.GONE)
                     southText.setVisibility(View.VISIBLE);
                 else
@@ -233,10 +213,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(test.getInt("favoriteGage",0)>=100){
                     Intent intent =new Intent(getApplicationContext(),NorthLoading.class);
+                    intent.putExtra("name","평양숭실");
                     startActivity(intent);
                     finish();
                 }else{
-                    makeDialog();
+                    makeDialog("평양숭실");
                 }
             }
         });
@@ -245,11 +226,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(test.getInt("favoriteGage",0)>=100){
-                    Intent intent =new Intent(getApplicationContext(),NorthFoodMain.class);
+                    Intent intent =new Intent(getApplicationContext(),NorthLoading.class);
+                    intent.putExtra("name","식당");
                     startActivity(intent);
                     finish();
                 }else{
-                    makeDialog();
+                    makeDialog("식당");
                 }
             }
         });
@@ -258,11 +240,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(test.getInt("favoriteGage",0)>=100){
-                    Intent intent =new Intent(getApplicationContext(),NorthCultureMain.class);
+                    Intent intent =new Intent(getApplicationContext(),NorthLoading.class);
+                    intent.putExtra("name","관광지");
                     startActivity(intent);
                     finish();
                 }else{
-                    makeDialog();
+                    makeDialog("관광지");
                 }
             }
         });
@@ -361,9 +344,9 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    private void makeDialog() {
+    private void makeDialog(String word) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("").setMessage("호감도가 낮아서 평양숭실에 방문할 수 없습니다. \n호감도를 100이상으로 높여주세요!");
+        builder.setTitle("").setMessage("호감도가 낮아서 "+word+"에 방문할 수 없습니다. \n호감도를 100이상으로 높여주세요!");
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }

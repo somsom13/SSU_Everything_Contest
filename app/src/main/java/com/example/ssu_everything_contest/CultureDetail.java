@@ -32,7 +32,7 @@ public class CultureDetail extends AppCompatActivity {
         title.setText(newData.getCultureTitle());
         //content.setText(newData.getCultureContent());
         setContentText(newData.getCultureContent());
-        image.setImageResource(setViewImg.idListForCultureData[pos]);
+        image.setImageResource(SouthCulture.cultureLid[pos]);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

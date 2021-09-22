@@ -157,6 +157,7 @@ public class NorthGame extends Fragment {
             editor.putInt("wordGameEnd",1);
             editor.putInt("progressCount",0);
             editor.apply();
+            Log.v("checkHeart","word game win, heart: "+MainActivity.test.getInt("heartCount",1)+"word end: "+MainActivity.test.getInt("wordGameEnd",0));
             Intent intent=new Intent(getActivity(),MainActivity.class);
             startActivity(intent);
             getActivity().finish();

@@ -68,8 +68,10 @@ public class CultureDataAdapter extends BaseAdapter {
         title.setText(spannableString);
 
         //Log.v("checkCulture","getView position : "+position);
-        if(position<=9)
-            image.setImageResource(setViewImg.idListForCultureData[position]);//img 경우별로 나눠서 넣기!
+        if(position<=9) {
+            int lid=SouthCulture.cultureLid[position];
+            image.setImageResource(lid);//img 경우별로 나눠서 넣기!
+        }
 
 
         if (cultureData.get(position).getCheck() == true) { //이미 누른거

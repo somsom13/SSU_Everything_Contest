@@ -116,7 +116,7 @@ public class NorthFoodGame extends Fragment {
 
     private void gameEnd(){
         if (Nprogress == 100 || Sprogress == 100) {
-            Log.v("checkFood","enter ending food game, nprogress: "+Nprogress+", sprogress: "+Sprogress);
+
             if (Nprogress > Sprogress) { //게임 졌음
                 makeToast("lose");
                 Intent intent=new Intent(getActivity(),MainActivity.class);
@@ -124,11 +124,13 @@ public class NorthFoodGame extends Fragment {
                 getActivity().finish();
             } else { //게임 이겼음
                 int heart=MainActivity.test.getInt("heartCount",0);
+
                 if(MainActivity.test.getInt("foodEnd",0)!=1) {
                     MainActivity.editor.putInt("heartCount", heart + 1);
-                    MainActivity.editor.putInt("foodEnd",1);
-                    MainActivity.editor.apply();
                 }
+                MainActivity.editor.putInt("foodEnd",1);
+                MainActivity.editor.apply();
+                Log.v("checkHeart","food game win, heart: "+MainActivity.test.getInt("heartCount",1)+"food end: "+MainActivity.test.getInt("foodEnd",0));
                 makeToast("win");
                 Intent intent=new Intent(getActivity(),MainActivity.class);
                 startActivity(intent);

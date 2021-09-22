@@ -145,16 +145,16 @@
         android:id="@+id/northSoongsilText"
         android:layout_width="220dp"
         android:layout_height="75dp"
+        android:layout_marginLeft="-20dp"
         android:background="@drawable/main_text_border"
         android:fontFamily="@font/gowunbatang_regular"
         android:gravity="center"
         android:text="평양숭실 동기와의 대화"
         android:textSize="45px"
         android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.660"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        app:layout_constraintStart_toEndOf="@+id/northButton"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -220,7 +220,6 @@
         android:textSize="50px"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintEnd_toStartOf="@+id/foodButton"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.057" />
@@ -229,14 +228,13 @@
         android:id="@+id/cultureText"
         android:layout_width="160dp"
         android:layout_height="75dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="120dp"
         android:background="@drawable/main_text_border"
         android:fontFamily="@font/gowunbatang_regular"
         android:gravity="center"
-        android:visibility="gone"
         android:text="관광하기"
         android:textSize="50px"
+        android:visibility="gone"
         app:layout_constraintStart_toEndOf="@+id/cultureButton"
         app:layout_constraintTop_toTopOf="parent" />
 

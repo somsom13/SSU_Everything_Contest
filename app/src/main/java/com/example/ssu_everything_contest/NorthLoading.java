@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +17,11 @@ public class NorthLoading extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.north_loading);
+        TextView name=findViewById(R.id.app_name);
+
+        Intent it=getIntent();
+        String dest=it.getExtras().getString("name");
+        name.setText(dest+"로 이동중...");
 
         ImageView imageView = findViewById(R.id.iv_logo);
         Glide.with(this).load(R.raw.loading).into(imageView);
@@ -24,7 +30,13 @@ public class NorthLoading extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(NorthLoading.this, NorthMain.class);
+                Intent intent;
+                if(dest.equals("평양숭실"))
+                    intent = new Intent(NorthLoading.this, NorthMain.class);
+                else if(dest.equals("식당"))
+                    intent=new Intent(NorthLoading.this,NorthFoodMain.class);
+                else
+                    intent=new Intent(NorthLoading.this,NorthCultureMain.class);
                 intent.putExtra("from","loading");
                 startActivity(intent);
                 finish();

@@ -11,9 +11,17 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 public class setViewImg extends Activity {
-    public static int[] idListForCultureData=new int[10];
-    public static int[] idListForTourData=new int[10];
+    private ArrayList<String> idListForCultureData=new ArrayList<>();
+    ArrayList<String> idListForTourData=new ArrayList<>();
+    //public static int[] idListForCultureData=new int[10];
+    //public static int[] idListForTourData=new int[10];
+    StringBuilder strCulture = new StringBuilder();
+    StringBuilder strTour = new StringBuilder();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,15 +53,23 @@ public class setViewImg extends Activity {
         }*/
         for(int i=0;i<num;i++) {
             int lid = this.getResources().getIdentifier("culture_" + (i+1), "drawable", this.getPackageName());
-            idListForCultureData[i]=lid;
+            //idListForCultureData.add(String.valueOf(lid));
+            strCulture.append(lid).append(",");
         }
 
         for(int i=0;i<num;i++) {
             int lid = this.getResources().getIdentifier("tour_" + (i+1), "drawable", this.getPackageName());
-            idListForTourData[i]=lid;
+            //idListForTourData.add(String.valueOf(lid));
+            strTour.append(lid).append(",");
         }
 
-        Handler handler=new Handler();
+        MainActivity.editor.putString("cultureData",strCulture.toString());
+        MainActivity.editor.putString("tourData",strTour.toString());
+        MainActivity.editor.commit();
+
+        //sharedPreference에 List두개 저장장
+
+       Handler handler=new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
