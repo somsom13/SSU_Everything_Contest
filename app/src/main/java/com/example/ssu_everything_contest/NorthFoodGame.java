@@ -39,39 +39,25 @@ public class NorthFoodGame extends Fragment {
         sEat = "";
         nEatText = rootView.findViewById(R.id.northGameNeat);
         sEatText = rootView.findViewById(R.id.northGameSeat);
-        if(!MainActivity.test.contains("foodEnd")){
-            MainActivity.editor.putInt("foodEnd",0);
+        if (!MainActivity.test.contains("foodEnd")) {
+            MainActivity.editor.putInt("foodEnd", 0);
             MainActivity.editor.apply();
         }
 
         foodImage = rootView.findViewById(R.id.northGameFoodImage);
         foodImage.setImageResource(imgID);
-        foodImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { //남한애 먹는거
-                if (Sprogress < 100) {
-                    Sprogress += 1;
-                    ProgressBar Sbar = (ProgressBar) rootView.findViewById(R.id.southProgress);
-                    Sbar.setProgress(Sprogress);
-                    if (Sprogress % 4 == 0) {
-                        sEat += "뇸";
-                        sEatText.setText(sEat);
-                    }
-                    if(Sprogress%10==0)
-                        Log.v("checkFood","sprogress: "+Sprogress);
-                }else{
-                    gameEnd();
-                }
-            }
-        });
+
 
         Handler handler = new Handler();
         ProgressBar Nbar = (ProgressBar) rootView.findViewById(R.id.northProgress);
         Thread t = new Thread(new Runnable() {
+
             @Override
             public void run() {
-                while (Sprogress < 100&&Nprogress<101) {
-                    if(Nprogress==100)
+
+
+                while (Sprogress < 100 && Nprogress < 101) {
+                    if (Nprogress == 100)
                         gameEnd();
 
                     Nprogress += 1;
@@ -79,8 +65,8 @@ public class NorthFoodGame extends Fragment {
                         nEat += "냠";
                     }
 
-                    if(Nprogress%10==0){
-                        Log.v("checkFood","nprogress: "+Nprogress);
+                    if (Nprogress % 10 == 0) {
+                        Log.v("checkFood", "nprogress: " + Nprogress);
                     }
 
                     handler.post(new Runnable() {
@@ -95,44 +81,61 @@ public class NorthFoodGame extends Fragment {
                     });
 
                     try {
-                        Thread.sleep(210);
+                        Thread.sleep(180);
                     } catch (InterruptedException e) {
 
                     }
                 }
 
             }
+
         });
-        t.start();
 
-        /*
-            이렇게 결과처리해야 되는데 안뜬다 어떻게 해야할지 모르겠다
-        */
+        foodImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { //남한애 먹는거
+                if (Sprogress == 1) {
+                    t.start();
+                }
+                if (Sprogress < 100) {
+                    Sprogress += 1;
+                    ProgressBar Sbar = (ProgressBar) rootView.findViewById(R.id.southProgress);
+                    Sbar.setProgress(Sprogress);
+                    if (Sprogress % 4 == 0) {
+                        sEat += "뇸";
+                        sEatText.setText(sEat);
+                    }
+                    if (Sprogress % 10 == 0)
+                        Log.v("checkFood", "sprogress: " + Sprogress);
+                } else {
+                    gameEnd();
+                }
+            }
+        });
 
-        //바로 위 주석부터 여기까지 실행이 안됨.....믿습니다 소멘..아 그 메인에 하트연결도........
 
         return rootView;
     }
 
-    private void gameEnd(){
+    private void gameEnd() {
         if (Nprogress == 100 || Sprogress == 100) {
 
             if (Nprogress > Sprogress) { //게임 졌음
-                makeToast("lose");
-                Intent intent=new Intent(getActivity(),MainActivity.class);
+                makeToast("졌습니다 다음에 다시 도전해주세요!");
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
             } else { //게임 이겼음
-                int heart=MainActivity.test.getInt("heartCount",0);
+                int heart = MainActivity.test.getInt("heartCount", 0);
 
-                if(MainActivity.test.getInt("foodEnd",0)!=1) {
+                if (MainActivity.test.getInt("foodEnd", 0) != 1) {
                     MainActivity.editor.putInt("heartCount", heart + 1);
                 }
-                MainActivity.editor.putInt("foodEnd",1);
+                MainActivity.editor.putInt("foodEnd", 1);
                 MainActivity.editor.apply();
-                Log.v("checkHeart","food game win, heart: "+MainActivity.test.getInt("heartCount",1)+"food end: "+MainActivity.test.getInt("foodEnd",0));
-                makeToast("win");
-                Intent intent=new Intent(getActivity(),MainActivity.class);
+                Log.v("checkHeart", "food game win, heart: " + MainActivity.test.getInt("heartCount", 1) + "food end: " + MainActivity.test.getInt("foodEnd", 0));
+                makeToast("이겼습니다 하트가 하나 생겼습니다♥");
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
             }
@@ -141,14 +144,14 @@ public class NorthFoodGame extends Fragment {
         }
     }
 
-    private void makeToast(String word){
-        Handler handler=new Handler(Looper.getMainLooper());
+    private void makeToast(String word) {
+        Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-               Toast.makeText(getContext(),word,Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), word, Toast.LENGTH_LONG).show();
             }
-        },0);
+        }, 0);
     }
 
 }

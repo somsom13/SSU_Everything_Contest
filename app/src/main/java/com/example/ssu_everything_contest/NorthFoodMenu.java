@@ -10,9 +10,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+
+import static java.lang.Thread.sleep;
 
 public class NorthFoodMenu extends Fragment {
     ArrayList<FoodData> foods;
@@ -35,6 +38,9 @@ public class NorthFoodMenu extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView parent, View view, int position, long id) {
+                makeDialog();
+
+
                 ((NorthFoodMain)getActivity()).replaceFragment(NorthFoodGame.newInstance(foods.get(position).getFoodImage()));
             }
         });
@@ -57,5 +63,12 @@ public class NorthFoodMenu extends Fragment {
         foods.add(new FoodData(R.drawable.food_11,"토끼곰","토끼곰은 토끼고기 안에 밤, 대추, 검은콩, 황기 등을 넣고 삶아 먹는 요리이다."));
         foods.add(new FoodData(R.drawable.food_12,"식해","식해는 토막난 생선에 고춧가루, 무, 소금, 밥, 엿기름을 섞어 발효시킨 저장식품이다."));
         foods.add(new FoodData(R.drawable.food_13,"어복쟁반","암소의 어복살이나 살코기를 삶은 다음 얇은 편으로 썰어 양념을 올려놓은 평양의 고기반찬"));
+    }
+    private void makeDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(ct);
+        builder.setTitle("").setMessage("음식이 나왔습니다!\n음식을 빠르게 터치하여 북한 친구보다 빨리 먹어보세요");
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 }

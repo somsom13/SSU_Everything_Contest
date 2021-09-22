@@ -33,7 +33,7 @@ public class NorthLoading extends AppCompatActivity {
                 Intent intent;
                 if(dest.equals("평양숭실"))
                     intent = new Intent(NorthLoading.this, NorthMain.class);
-                else if(dest.equals("식당"))
+                else if(dest.equals("식당으"))
                     intent=new Intent(NorthLoading.this,NorthFoodMain.class);
                 else
                     intent=new Intent(NorthLoading.this,NorthCultureMain.class);

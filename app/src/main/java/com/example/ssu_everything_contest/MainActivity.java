@@ -227,11 +227,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(test.getInt("favoriteGage",0)>=100){
                     Intent intent =new Intent(getApplicationContext(),NorthLoading.class);
-                    intent.putExtra("name","식당");
+                    intent.putExtra("name","식당으");
                     startActivity(intent);
                     finish();
                 }else{
-                    makeDialog("식당");
+                    makeDialog("식당으");
                 }
             }
         });
