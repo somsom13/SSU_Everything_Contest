@@ -81,6 +81,10 @@ public class NorthCultureGame extends Fragment {
             MainActivity.editor.putInt("tourWrongCount",0);
             editor.commit();
         }
+        if(!test.contains("tourEnd")){
+            editor.putInt("tourEnd",0);
+            editor.commit();
+        }
 
         wrongCount=MainActivity.test.getInt("tourWrongCount",0);
 
@@ -128,8 +132,10 @@ public class NorthCultureGame extends Fragment {
         applyPreference();
         if(tourProgress==10){
             Log.v("checkGame","end of game list, go to NorthSuccess");
-            editor.putInt("tourProgress",100);
-            editor.putInt("heartCount",test.getInt("heartCount",0)+1);
+            if(test.getInt("tourEnd",0)!=1)
+                editor.putInt("heartCount",test.getInt("heartCount",0)+1);
+            editor.putInt("tourProgress",0);
+            editor.putInt("tourEnd",1);
             editor.apply();
             Intent intent=new Intent(getActivity(),MainActivity.class);
             Toast.makeText(getContext(),"관광지 퀴즈를 성공적으로 끝냈습니다!",Toast.LENGTH_LONG).show();

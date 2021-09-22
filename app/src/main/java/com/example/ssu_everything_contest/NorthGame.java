@@ -58,6 +58,10 @@ public class NorthGame extends Fragment {
         editor = test.edit();
         favoriteGage = test.getInt("favoriteGage", 100);
         progressCount = test.getInt("progressCount", 0);
+        if(!test.contains("wordGameEnd")){
+            editor.putInt("wordGameEnd",0);
+            editor.commit();
+        }
 
         nCharacterNormal = rootView.findViewById(R.id.tourNorthChar);
         sCharacterNormal = rootView.findViewById(R.id.tourSouthChar);
@@ -148,13 +152,10 @@ public class NorthGame extends Fragment {
             applyPreference();
             Log.v("checkGame", "end of game list, go to NorthSuccess");
             Toast.makeText(getContext(),"단어 게임을 성공적으로 끝냈습니다!",Toast.LENGTH_LONG).show();
-            //FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            //NorthSuccess fragment2 = new NorthSuccess();
-            //transaction.replace(R.id.container, fragment2);
-            //transaction.commit();
-
-            editor.putInt("heartCount",test.getInt("heartCount",0)+1);
-            editor.putInt("progressCount",100);
+            if(test.getInt("wordGameEnd",0)!=1)
+                editor.putInt("heartCount",test.getInt("heartCount",0)+1);
+            editor.putInt("wordGameEnd",1);
+            editor.putInt("progressCount",0);
             editor.apply();
             Intent intent=new Intent(getActivity(),MainActivity.class);
             startActivity(intent);

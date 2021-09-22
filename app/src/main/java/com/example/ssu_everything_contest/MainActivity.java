@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<NorthWordSouthWordData> nsWordList=new ArrayList<>();//단어사전 리스트
     public static ArrayList<CultureData> cultureList=new ArrayList<>();//문화 리스트
     private int favoriteGage;
-    private int setImg=0;
+    private int seeEnding,setImg=0;
     public static SharedPreferences test;
     public static SharedPreferences.Editor editor;
     private TextView favoriteText,heart1,heart2,heart3;
@@ -73,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
             insertDataToDictionary();
         if(cultureList.size()==0)
             insertDataToCulture();
-        sendImgRequest("cultureData");
+        //sendImgRequest("cultureData");
         //sendImgRequest("foodData");
-        sendImgRequest("tourData");
+        //sendImgRequest("tourData");
 
 
         favoriteText=findViewById(R.id.tour_favorite);
@@ -94,13 +94,15 @@ public class MainActivity extends AppCompatActivity {
         }
         if(!test.contains("heartCount")){
             editor.putInt("heartCount",0);
+        }if(!test.contains("seeEnding")){
+            editor.putInt("seeEnding",0);
         }
         editor.commit(); //완료한다.
 
         favoriteGage=test.getInt("favoriteGage",100);
         favoriteText.setText(String.valueOf(favoriteGage));
         userName=test.getString("userName","none");
-
+        seeEnding=test.getInt("seeEnding",0);
         int heartCount=test.getInt("heartCount",0);
         setHeartCount(heartCount);
 
@@ -215,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
         southText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),SouthLoading.class);
+                Intent intent=new Intent(getApplicationContext(),setViewImg.class);
                 startActivity(intent);
                 finish();
             }
@@ -420,7 +422,9 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        if(count==3){
+        if(count==3&&test.getInt("seeEnding",0)==0){
+            editor.putInt("seeEnding",1);
+            editor.apply();
             Handler handler=new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
@@ -429,8 +433,6 @@ public class MainActivity extends AppCompatActivity {
                     successIntent.putExtra("from","Main");
                     startActivity(successIntent);
                     finish();
-                    /*NorthSuccess northSuccess=new NorthSuccess();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, northSuccess).commit();*/
                 }
             }    ,2000);
         }

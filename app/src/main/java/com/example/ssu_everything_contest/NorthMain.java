@@ -31,18 +31,9 @@ public class NorthMain extends AppCompatActivity {
         if(from.equals("Main")){
             getSupportFragmentManager().beginTransaction().replace(R.id.container, northSuccess).commit();
         }else {
-
-
-            int wordGameProgress = MainActivity.test.getInt("progressCount", 0);
-            if (wordGameProgress == 100) {
-                makeDialog(0);
-                Intent intent = new Intent(NorthMain.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            } else {
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, northGame).commit();
                 makeDialog(1);
-            }
+
         }
 
 

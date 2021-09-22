@@ -49,7 +49,7 @@ public class NorthSuccess extends Fragment {
                 one_N.setVisibility(View.VISIBLE);
                 one_S.setVisibility(View.VISIBLE);
             }
-        },7000);
+        },5000);
         return rootView;
     }
 

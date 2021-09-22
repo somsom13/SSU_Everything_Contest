@@ -1,5 +1,6 @@
 package com.example.ssu_everything_contest;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,5 +27,13 @@ public class NorthFoodMain extends AppCompatActivity {
         FragmentManager fm=getSupportFragmentManager();
         FragmentTransaction ft=fm.beginTransaction();
         ft.replace(R.id.container_north_food,fragment).commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent=new Intent(NorthFoodMain.this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

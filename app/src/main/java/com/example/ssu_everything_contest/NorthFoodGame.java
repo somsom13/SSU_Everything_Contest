@@ -3,6 +3,8 @@ package com.example.ssu_everything_contest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +22,7 @@ public class NorthFoodGame extends Fragment {
     ImageView foodImage;
     String nEat, sEat;
     TextView nEatText, sEatText;
-    int Nprogress, Sprogress;
+    private int Nprogress, Sprogress;
 
     public static NorthFoodGame newInstance(int foodID) {
         imgID = foodID;
@@ -37,6 +39,10 @@ public class NorthFoodGame extends Fragment {
         sEat = "";
         nEatText = rootView.findViewById(R.id.northGameNeat);
         sEatText = rootView.findViewById(R.id.northGameSeat);
+        if(!MainActivity.test.contains("foodEnd")){
+            MainActivity.editor.putInt("foodEnd",0);
+            MainActivity.editor.apply();
+        }
 
         foodImage = rootView.findViewById(R.id.northGameFoodImage);
         foodImage.setImageResource(imgID);
@@ -51,6 +57,10 @@ public class NorthFoodGame extends Fragment {
                         sEat += "뇸";
                         sEatText.setText(sEat);
                     }
+                    if(Sprogress%10==0)
+                        Log.v("checkFood","sprogress: "+Sprogress);
+                }else{
+                    gameEnd();
                 }
             }
         });
@@ -60,11 +70,17 @@ public class NorthFoodGame extends Fragment {
         Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (Sprogress < 100) {
+                while (Sprogress < 100&&Nprogress<101) {
+                    if(Nprogress==100)
+                        gameEnd();
 
                     Nprogress += 1;
                     if (Nprogress % 4 == 0) {
                         nEat += "냠";
+                    }
+
+                    if(Nprogress%10==0){
+                        Log.v("checkFood","nprogress: "+Nprogress);
                     }
 
                     handler.post(new Runnable() {
@@ -79,7 +95,7 @@ public class NorthFoodGame extends Fragment {
                     });
 
                     try {
-                        Thread.sleep(110);
+                        Thread.sleep(210);
                     } catch (InterruptedException e) {
 
                     }
@@ -92,18 +108,45 @@ public class NorthFoodGame extends Fragment {
         /*
             이렇게 결과처리해야 되는데 안뜬다 어떻게 해야할지 모르겠다
         */
+
+        //바로 위 주석부터 여기까지 실행이 안됨.....믿습니다 소멘..아 그 메인에 하트연결도........
+
+        return rootView;
+    }
+
+    private void gameEnd(){
         if (Nprogress == 100 || Sprogress == 100) {
+            Log.v("checkFood","enter ending food game, nprogress: "+Nprogress+", sprogress: "+Sprogress);
             if (Nprogress > Sprogress) { //게임 졌음
-                Toast.makeText(getActivity().getApplicationContext(), "lose", Toast.LENGTH_LONG).show();
+                makeToast("lose");
+                Intent intent=new Intent(getActivity(),MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             } else { //게임 이겼음
-                Toast.makeText(getActivity().getApplicationContext(), "win", Toast.LENGTH_LONG).show();
+                int heart=MainActivity.test.getInt("heartCount",0);
+                if(MainActivity.test.getInt("foodEnd",0)!=1) {
+                    MainActivity.editor.putInt("heartCount", heart + 1);
+                    MainActivity.editor.putInt("foodEnd",1);
+                    MainActivity.editor.apply();
+                }
+                makeToast("win");
+                Intent intent=new Intent(getActivity(),MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             }
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
         }
-        //바로 위 주석부터 여기까지 실행이 안됨.....믿습니다 소멘..아 그 메인에 하트연결도........
+    }
 
-        return rootView;
+    private void makeToast(String word){
+        Handler handler=new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+               Toast.makeText(getContext(),word,Toast.LENGTH_LONG).show();
+            }
+        },0);
     }
 
 }
