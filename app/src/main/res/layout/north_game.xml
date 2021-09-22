@@ -18,34 +18,47 @@
 
         <TextView
             android:id="@+id/progress"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+
             android:fontFamily="@font/gowunbatang_regular"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:textSize="30sp" />
-
+            android:textSize="23sp" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
         <ImageButton
             android:id="@+id/homeIconButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="85dp"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
             android:background="#00ffffff"
             app:srcCompat="@drawable/home_icon"
             app:tint="@color/white" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1.3"/>
+
         <TextView
             android:id="@+id/tour_favorite"
-            android:layout_width="43dp"
+            android:layout_width="0dp"
             android:layout_height="43dp"
-            android:layout_marginLeft="115dp"
-            android:layout_marginTop="-7dp"
+            android:layout_weight="0.7"
+            android:layout_gravity="right"
             android:background="@drawable/favorite_heart"
             android:fontFamily="@font/gowunbatang_bold"
             android:gravity="center"
             android:text="favorite"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:visibility="visible"/>
+
 
     </LinearLayout>
 
