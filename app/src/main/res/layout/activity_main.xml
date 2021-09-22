@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/first_page_image"
-    tools:context=".MainActivity">
+    android:background="@drawable/division"
+    tools:context=".MainActivity"
+    android:id="@+id/mainBackground">
 
 
     <LinearLayout

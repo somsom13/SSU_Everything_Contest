@@ -2,6 +2,7 @@ package com.example.ssu_everything_contest;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.OnLifecycleEvent;
 
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView favoriteText,heart1,heart2,heart3;
     TextView southText,northText,foodText, cultureText;
     private String userName;
+    ConstraintLayout layout;
 
 
     @Override
@@ -53,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         heart1=findViewById(R.id.heart1);
         heart2=findViewById(R.id.heart2);
         heart3=findViewById(R.id.heart3);
+
+        layout=(ConstraintLayout)findViewById(R.id.mainBackground);
 
         /**
          * DB연결
@@ -122,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, northSuccess).commit();
         }*/
 
-
+        if(favoriteGage>=100) { layout.setBackgroundResource(R.drawable.first_page_image); }
+        else {layout.setBackgroundResource(R.drawable.division); }
 
         //북쪽 로딩으로 가는 버튼
         ImageButton goNorth= (ImageButton) findViewById(R.id.northButton);
